@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 19:37:39 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/05 11:11:08 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/10 13:55:02 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	main(int argc, char **argv)
 	stack = ft_parsing_stack(--argc, ++argv);
 	if (!stack)
 		return (1);
+	if (ft_duplicates_stack(stack))
+		ft_error(stack);
 	while (1)
 	{
 		line = get_next_line(0);
