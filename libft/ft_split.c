@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 20:27:24 by blakehal          #+#    #+#             */
-/*   Updated: 2022/11/14 09:30:32 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/11 13:53:34 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	ft_malloc_clear(char **strs, int a)
 	return (0);
 }
 
-static int	ft_wordcount(char const *s, char c)
+int	ft_wordcount(char const *s, char c)
 {
 	int	wordcount;
 	int	i;
