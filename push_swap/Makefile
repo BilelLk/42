@@ -56,13 +56,13 @@ $(OBJS_DIR)%.o: %.c ${HEAD}
 
 ${NAME}:		${OBJS_SRCS} ${OBJS_PS}
 				mkdir -p ${OBJS_DIR}
-				@echo "${GREEN}Beginning of Compilation😊"
+				@echo "${GREEN}Beginning of Compilation😊${NONE}"
 				cd .progress_bar/ && ./heavy_work.sh
 				${CC} ${FLAGS} ${OBJS_SRCS} ${OBJS_PS} -o ${NAME}
 
 bonus:			${OBJS_SRCS} ${OBJS_BON}
 				mkdir -p ${OBJS_DIR}
-				@echo "${GREEN}Beginning of Bonus Compilation😊"
+				@echo "${GREEN}Beginning of Bonus Compilation😊${NONE}"
 				cd .progress_bar/ && ./heavy_work_bonus.sh
 				${CC} ${FLAGS} ${OBJS_SRCS} ${OBJS_BON} -o ${NAME_BON}
 
@@ -71,7 +71,7 @@ clean:
 				$(RM) ${OBJS_DIR}
 
 fclean:			clean
-				@echo "         and executable file...😔"
+				@echo "         and executable file...😔${NONE}"
 				${RM} ${NAME} ${NAME_BON}
 				cd .progress_bar/ && ./heavy_work_invert.sh
 

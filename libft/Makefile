@@ -6,19 +6,28 @@
 #    By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 09:32:22 by blakehal          #+#    #+#              #
-#    Updated: 2022/11/16 14:18:35 by blakehal         ###   ########lyon.fr    #
+#    Updated: 2023/01/11 13:41:41 by blakehal         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
+
+NONE=\033[0m
+GREEN=\033[32m
+GRAY=\033[2;37m
+CURSIVE=\033[3m
+RED_0=\033[31m
+RED_1=\033[1m
 
 NAME = libft.a
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
-RM = rm -f
+RM = rm -rf
 
 AR              = ar rcs
+
+OBJS_DIR		= OBJ/
 
 SRCS = 	ft_isalpha.c \
 	   ft_isdigit.c \
@@ -53,7 +62,9 @@ SRCS = 	ft_isalpha.c \
 	   ft_putchar_fd.c \
 	   ft_putstr_fd.c \
 	   ft_putendl_fd.c \
-	   ft_putnbr_fd.c
+	   ft_putnbr_fd.c \
+	   get_next_line.c \
+	   get_next_line_utils.c \
 
 SRCS_BONUS = ft_lstnew.c \
 			ft_lstadd_front.c \
@@ -65,30 +76,42 @@ SRCS_BONUS = ft_lstnew.c \
 			ft_lstiter.c \
 			ft_lstmap.c
 
-OBJS    = ${SRCS:.c=.o}
+OBJS    = $(addprefix ${OBJS_DIR}, $(SRCS:.c=.o))
 
-OBJS_B = ${SRCS_BONUS:.c=.o}
+OBJS_B = $(addprefix ${OBJS_DIR}, ${SRCS_BONUS:.c=.o})
 
 HEADER = libft.h
 
 all :	${NAME}
 
-%.o: %.c ${HEADER} Makefile
-	${CC} ${CFLAGS} -I. -c $< -o $@
+$(OBJS_DIR)%.o: %.c ${HEADER}
+				mkdir -p ${OBJS_DIR}
+				${CC} ${FLAGS} -I. -c $< -o $@
 
 
-${NAME} : ${OBJS} ${HEADER}
-	${AR} ${NAME} ${OBJS}
+${NAME} : 		${OBJS} ${HEADER}
+				mkdir -p ${OBJS_DIR}
+				@echo "${GREEN}Beginning of Compilation😊"
+				cd .progress_bar/ && ./heavy_work.sh
+				${AR} ${NAME} ${OBJS}
 
-bonus: ${OBJS_B} ${HEADER}
-	${AR} ${NAME} ${OBJS_B}
+bonus: 			${OBJS_B} ${HEADER}
+				mkdir -p ${OBJS_DIR}
+				@echo "${GREEN}Beginning of Bonus Compilation😊"
+				cd .progress_bar/ && ./heavy_work_bonus.sh
+				${AR} ${NAME} ${OBJS_B}
 
 clean:
-	${RM} ${OBJS} ${OBJS_B}
+				@echo "${RED_0}Removing ${RED_1}objects files...😔"
+				${RM} ${OBJS_DIR}
 
 fclean :        clean
-	${RM} ${NAME}
+				@echo "         and executable file...😔${NONE}"
+				${RM} ${NAME}
+				cd .progress_bar/ && ./heavy_work_invert.sh
 
 re :            fclean all
+
+.SILENT : 		clean fclean $(NAME) re $(SRCS:.c=.o) dir all bonus
 
 .PHONY:         all clean fclean re bonus
