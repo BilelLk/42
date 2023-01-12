@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:02:41 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/11 13:21:22 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/12 12:27:10 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ char	*get_next_line(int fd)
 	static char	*tmp;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) == -1)
-		return (free(tmp), tmp = NULL, NULL);
+	if (read(fd, &line, 0) == -1)
+		return (free(tmp), NULL);
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 	tmp = ft_read(fd, tmp);
 	if (!tmp)
 		return (NULL);
@@ -33,13 +35,13 @@ char	*ft_read(int fd, char *tmp)
 	int		nb_bytes;
 
 	nb_bytes = 1;
-	while (!ft_strrchr(tmp, '\n') && nb_bytes != 0)
+	while (!ft_strerchr(tmp, '\n') && nb_bytes != 0)
 	{
 		nb_bytes = read(fd, buffer, BUFFER_SIZE);
 		if (nb_bytes == -1)
 			return (NULL);
 		buffer[nb_bytes] = '\0';
-		tmp = ft_strjoin(tmp, buffer);
+		tmp = ft_strjoint(tmp, buffer);
 	}
 	return (tmp);
 }

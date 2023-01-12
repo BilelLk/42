@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 15:03:16 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/11 13:21:30 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/11 13:54:19 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int		ft_tolower(int i);
 int		ft_strncmp(const char *s, const char *s1, size_t i);
 int		ft_memcmp(const void *v, const void *s1, size_t i);
 int		ft_atoi(const char *s);
+int		ft_wordcount(char const *s, char c);
 
 //GNL
 char	*get_next_line(int fd);
