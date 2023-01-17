@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_push_swap.h"
 
 static void	ft_reverse(int *stack, int *len)

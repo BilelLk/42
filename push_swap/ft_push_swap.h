@@ -37,6 +37,12 @@ typedef enum e_stacks
 	ALL,
 }	t_stacks;
 
+typedef enum e_find
+{
+	BIGGER,
+	SMALLER,
+}	t_find;
+
 typedef enum e_bool
 {
 	false,

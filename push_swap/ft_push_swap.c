@@ -6,39 +6,66 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 12:39:34 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/12 13:11:43 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/17 10:15:18 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-static int	is_top_30_percent(int *array, t_stacks s, int array_size, \
-int total_len)
+static int	ft_find_15_percent_smaller_bigger(int *array, int array_size, \
+t_find f)
 {
 	float	ratio;
 	int		i;
-	int		nb_of_smaller_elements;
+	int		nb_of_elements;
 
 	i = 0;
-	nb_of_smaller_elements = 0;
-	ratio = (25 + (1 - array_size / (float)total_len) * 20);
-	while (i < array_size)
-		if (array[i++] < array[0])
-			nb_of_smaller_elements++;
-	if (s == A)
+	nb_of_elements = 0;
+	ratio = 17;
+	if (f == SMALLER)
 	{
-		if ((float)nb_of_smaller_elements >= \
-		((float)array_size * (ratio / 100)))
-			return (true);
-		else
-			return (false);
+		while (i < array_size)
+			if (array[i++] < array[0])
+				nb_of_elements++;
 	}
 	else
 	{
-		if (nb_of_smaller_elements >= array_size / 3)
-			return (true);
+		while (i < array_size)
+			if (array[i++] > array[0])
+				nb_of_elements++;
+	}
+	if ((float)nb_of_elements >= \
+	((float)array_size * (ratio / 100)))
+		return (false);
+	else
+		return (true);
+}
+
+static void	ft_a_to_b(t_stack *stack)
+{
+	while (stack->len_a > 17)
+	{
+		if (!ft_find_15_percent_smaller_bigger(stack->a, stack->len_a, SMALLER))
+		{
+			if (!ft_find_15_percent_smaller_bigger(stack->a, stack->len_a, \
+			BIGGER))
+				ra(stack);
+			else
+				pb(stack);
+		}
 		else
-			return (false);
+		{
+			pb(stack);
+			if (!ft_find_15_percent_smaller_bigger(stack->a, stack->len_a, \
+			BIGGER))
+				rr(stack);
+			else
+				rb(stack);
+		}
+	}
+	while (stack->len_a > 3)
+	{
+		pb(stack);
 	}
 }
 
@@ -58,33 +85,6 @@ static void	ft_b_to_a(t_stack *stack)
 		pa(stack);
 	}
 	ft_best_move(stack, A, ft_side(ft_min_index(stack), stack->len_a));
-}
-
-static void	ft_a_to_b(t_stack *stack)
-{
-	int	movement_id;
-
-	movement_id = 0;
-	while (stack->len_a > 3)
-	{
-		movement_id = is_top_30_percent(stack->a, A, stack->len_a, stack->len);
-		if (movement_id == 1)
-		{
-			if (stack->len_b > 0)
-			{
-				movement_id = is_top_30_percent(stack->b, B, \
-				stack->len_b, stack->len);
-				if (movement_id == 1)
-					ra(stack);
-				else
-					rr(stack);
-			}
-			else
-				ra(stack);
-		}
-		else
-			pb(stack);
-	}
 }
 
 static void	solve(t_stack *stack)
