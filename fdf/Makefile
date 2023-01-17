@@ -6,7 +6,7 @@
 #    By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/12 14:20:07 by blakehal          #+#    #+#              #
-#    Updated: 2023/01/17 15:22:26 by blakehal         ###   ########lyon.fr    #
+#    Updated: 2023/01/17 18:28:09 by blakehal         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,20 +20,18 @@ RED_1=\033[1m
 NAME		=	fdf
 
 INC			=	fdf.h
-INC_DIR		=	includes/
+INC_DIR		=	./
 
 HEADERS		= $(addprefix $(INC_DIR), $(INC))
 
-SRC_DIR		=	sources/
+SRC_DIR		=	./
 SRC			=	main.c 			\
-				draw.c 			\
 				read_file.c		\
-				hooks.c			\
-				maths.c			\
-				colors.c		\
-				key_hooks.c		\
-				free_memory.c	\
-
+				draw.c 			\
+				event.c			\
+				param.c			\
+				utils.c			\
+				free.c			\
 
 LIBFT_DIR	=	libft/
 LIBFT_A		=	$(LIBFT_DIR)libft.a
