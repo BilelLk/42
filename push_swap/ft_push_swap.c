@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 12:39:34 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/17 10:15:18 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/17 15:03:51 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	main(int argc, char **argv)
 	if (!stack)
 		return (1);
 	if (ft_duplicates_stack(stack))
-		ft_error(stack);
+		ft_error();
 	stack->print = 1;
 	stack->len = stack->len_a;
 	if (ft_is_not_sorted(stack))

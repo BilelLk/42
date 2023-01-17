@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 12:39:38 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/12 12:39:38 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/17 15:03:40 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ static t_stack	*ft_malloc_pasring(int ac, char **av)
 	while (i < ac)
 		wordcount += ft_wordcount(av[i++], ' ');
 	if (!wordcount)
-		return (ft_error(NULL), NULL);
+		return (ft_error(), NULL);
 	stack = malloc(sizeof(t_stack));
 	if (!stack)
-		return (NULL);
+		exit (0);
 	stack->a = malloc(wordcount * sizeof(int));
 	if (!stack->a)
 		return (ft_free_stack(stack, NONE));
@@ -76,16 +76,16 @@ static void	ft_is_eligible(char *argv, int k, t_stack *stack)
 		i++;
 	}
 	if (!argv[i])
-		return (ft_error(stack));
+		return (ft_error());
 	if (argv[i] <= '0' && argv[i] >= '9')
-		return (ft_error(stack));
+		return (ft_error());
 	while (argv[i] >= '0' && argv[i] <= '9')
 	{
 		max = max * 10 + ((argv[i] - '0') * sign);
 		i++;
 	}
 	if (argv[i] || (max < INT_MIN || max > INT_MAX))
-		return (ft_error(stack));
+		return (ft_error());
 	stack->a[k] = (int)max;
 }
 
@@ -118,13 +118,12 @@ t_stack	*ft_parsing_stack(int argc, char **argv)
 	while (j < argc)
 	{
 		if (argv[j][0] == '\0')
-			return (ft_error(sta), sta);
+			return (ft_error(), sta);
 		split = ft_split(argv[j], ' ');
+		if (!split)
+			exit (0);
 		while (split[i])
-		{
-			ft_is_eligible(split[i], k++, sta);
-			i++;
-		}
+			ft_is_eligible(split[i++], k++, sta);
 		ft_malloc_clear_parsing(split);
 		i = 0;
 		j++;

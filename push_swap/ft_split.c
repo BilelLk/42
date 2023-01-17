@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 20:27:24 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/04 14:46:20 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/17 14:58:13 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static char	**ft_spliplit(char const *s, char **final, char c, int i)
 			begin ++;
 		final[j] = ft_substr(s, i, begin - i);
 		if (j <= ft_wordcount(s, c) && ft_malloc_clear(final, j))
-			return (NULL);
+			exit(0);
 		j++;
 		i = begin;
 	}
@@ -84,6 +84,6 @@ char	**ft_split(char const *s, char c)
 		return (0);
 	final = ft_calloc(sizeof(char *), ft_wordcount(s, c) + 1);
 	if (!final)
-		return (NULL);
+		exit(0);
 	return (ft_spliplit(s, final, c, 0));
 }

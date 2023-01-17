@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 12:39:27 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/12 12:39:27 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/17 15:01:45 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		ft_abs(int nb);
 	/				UTILS						/
 	/------------------------------------------*/
 
-void	ft_error(t_stack *stack);
+void	ft_error(void);
 void	*ft_free_stack(t_stack *stack, t_stacks stacks);
 void	ft_putstr(char *str);
 void	ft_rotate_up(int *stack, int *len);
