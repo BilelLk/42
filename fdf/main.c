@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:06:48 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/17 18:27:20 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/18 11:31:43 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,16 @@ int	main(int argc, char **argv)
 	data = (t_fdf *)malloc(sizeof(t_fdf));
 	if (!data)
 		return (0);
+	init(data);
+	read_file(argv[argc - 1], data);
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, WIN_V, WIN_H, "fdf 42");
+	data->win = mlx_new_window(data->mlx, WIN_V, WIN_H, "FDF");
 	data->img = mlx_new_image(data->mlx, WIN_V, WIN_H);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
 		&data->line_length, &data->endian);
-	read_file(argv[argc - 1], data);
-	init(data);
 	draw(data, 1);
 	mlx_hook(data->win, 17, KEYRELEASE, close_window, data);
-	mlx_hook(data->win, 02, KEYRELEASE, deal_key, data);
+	mlx_hook(data->win, 02, BUTTONPRESS, deal_key, data);
 	mlx_key_hook(data->win, deal_key, data);
 	mlx_mouse_hook(data->win, mouse_hook, data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, data->x, data->y);

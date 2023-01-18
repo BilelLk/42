@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:05:51 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/17 18:06:06 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/18 11:28:09 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,19 @@ int	deal_key(int keycode, t_fdf *data)
 
 	if (data->coef <= 5)
 		add = 5;
+	if (data->coef >= 5 && data->coef <= 50)
+		add = 20;
 	if (data->coef >= 50)
-		add = 50;
+		add = 70;
 	three_d = 1;
-	if (keycode == 2)
-		three_d = 0;
-	if (keycode == 53)
+	if (keycode == FLAT_VIEW)
+		three_d *= -1;
+	if (keycode == ESC)
 		free_all(data);
-	param_shift(data, keycode, cmd, add);
-	if (keycode == 259)
+	ft_shift_param(data, keycode, cmd, add);
+	if (keycode == CMD)
 		cmd = 1;
-	if (keycode == 261)
+	if (keycode == ALT)
 		cmd = 0;
 	mlx_destroy_image(data->mlx, data->img);
 	data->img = mlx_new_image(data->mlx, WIN_V, WIN_V);

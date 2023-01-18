@@ -6,51 +6,51 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:07:03 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/17 18:07:11 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/18 11:29:23 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	param_shift(t_fdf *data, int keycode, int cmd, int add)
+void	ft_shift_param(t_fdf *data, int keycode, int cmd, int add)
 {
 	if (cmd == 0)
 	{
-		if (keycode == 126)
+		if (keycode == DOWN_ARROW)
 			data->shift_y += add;
-		if (keycode == 125)
+		if (keycode == UP_ARROW)
 			data->shift_y -= add;
-		if (keycode == 123)
+		if (keycode == RIGHT_ARROW)
 			data->shift_x += add;
-		if (keycode == 124)
+		if (keycode == LEFT_ARROW)
 			data->shift_x -= add;
 	}
 	if (cmd == 1)
 	{
-		if (keycode == 126)
-			data->rotate_h += 0.05;
-		if (keycode == 125)
-			data->rotate_h -= 0.05;
-		if (keycode == 123)
-			data->rotate_v += 0.05;
-		if (keycode == 124)
-			data->rotate_v -= 0.05;
+		if (keycode == DOWN_ARROW)
+			data->rotate_h += 0.1;
+		if (keycode == UP_ARROW)
+			data->rotate_h -= 0.1;
+		if (keycode == RIGHT_ARROW)
+			data->rotate_v += 0.1;
+		if (keycode == LEFT_ARROW)
+			data->rotate_v -= 0.1;
 	}
 }
 
-void	param_color(t_fdf *data)
+void	ft_color(t_fdf *data)
 {
 	if (data->z <= 0 || data->z1 <= 5)
-		data->color = 0x0000FF;
+		data->color = BLUE;
 	if ((data->z > 5 && data->z <= 50) || (data->z1 > 5 && data->z1 <= 50))
-		data->color = 0x008000;
+		data->color = GREEN;
 	if ((data->z > 50 && data->z <= 200) || (data->z1 > 50 && data->z1 <= 200))
-		data->color = 0x724b15;
+		data->color = BROWN;
 	if ((data->z > 200) && (data->z1 > 200))
-		data->color = 0xFFF8DC;
+		data->color = WHITE;
 }
 
-void	param_end_pos(t_fdf *data)
+void	ft_pos_end(t_fdf *data)
 {
 	data->posx *= data->coef;
 	data->posy *= data->coef;

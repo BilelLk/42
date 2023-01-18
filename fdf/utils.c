@@ -6,13 +6,13 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:07:37 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/17 18:08:15 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/18 11:33:47 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	iso(float *x, float *y, int z, t_fdf *data)
+void	ft_isometric_view(float *x, float *y, int z, t_fdf *data)
 {
 	*x = (*x - *y) * cos(data->rotate_v);
 	*y = (*x + *y) * sin(data->rotate_h) - z;
