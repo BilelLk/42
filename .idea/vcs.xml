@@ -3,5 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/fdf_test" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/push_swap/Push_Swap-Tester" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/push_swap/SCROS" vcs="Git" />
   </component>
 </project>

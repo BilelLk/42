@@ -29,9 +29,10 @@ SRC			=	fdf.c 			\
 				read_file.c		\
 				draw.c 			\
 				ft_free.c		\
-#				ft_dealkey.c	\
+				utils.c			\
+				view.c			\
 #				ft_key_hooks.c	\
-#				ft_utils.c		\
+
 
 LIBFT_DIR	=	libft/
 LIBFT_A		=	$(LIBFT_DIR)libft.a

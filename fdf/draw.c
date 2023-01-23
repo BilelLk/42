@@ -11,20 +11,15 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <math.h>
 
-#define MAX1(a, b) (a > b ? a : b)
-#define MOD(a) ((a < 0) ? -a : a)
-
-float	mod(float i)
+void	my_mlx_pixel_put(fdf *data, int x, int y, int color)
 {
-	return (i < 0) ? -i : i;
-}
+	int	*dst;
 
-void	isometric(float  *x, float  *y, int z)
-{
-	*x = (*x - *y) * cos(0.8);
-	*y = (*x + *y) * sin(0.8) - z;
+	if (x > 1000 - 10 || y > 1000 - 10 || x < 10 || y < 10)
+		return ;
+	dst = (int *)data->addr;
+	dst[y * 1000 + x] = color;
 }
 
 void	bresenham(float x, float y, float x1, float y1, fdf *data)
@@ -54,12 +49,12 @@ void	bresenham(float x, float y, float x1, float y1, fdf *data)
 	y1 += data->shift_y;
 	x_step = x1 - x;
 	y_step = y1 - y;
-	max = MAX1(MOD(x_step), MOD(y_step));
+	max = maximum(modulo(x_step), modulo(y_step));
 	x_step /= max;
 	y_step /= max;
 	while ((int)(x - x1) || (int)(y - y1))
 	{
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, data->color);
+		my_mlx_pixel_put(data, x, y, data->color);
 		x += x_step;
 		y += y_step;
 	}
