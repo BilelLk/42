@@ -31,7 +31,7 @@ SRC			=	fdf.c 			\
 				ft_free.c		\
 				utils.c			\
 				view.c			\
-#				ft_key_hooks.c	\
+				hooks.c			\
 
 
 LIBFT_DIR	=	libft/

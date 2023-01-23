@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:10:00 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/20 16:10:00 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/23 16:56:08 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	my_mlx_pixel_put(fdf *data, int x, int y, int color)
 {
 	int	*dst;
 
-	if (x > 1000 - 10 || y > 1000 - 10 || x < 10 || y < 10)
+	if (x > WIN_V - 10 || y > WIN_H - 10 || x < 10 || y < 10)
 		return ;
 	dst = (int *)data->addr;
-	dst[y * 1000 + x] = color;
+	dst[y * WIN_V + x] = color;
 }
 
 void	bresenham(t_points points, fdf *data)
@@ -34,8 +34,8 @@ void	bresenham(t_points points, fdf *data)
 	z1 = data->z_matrix[(int)points.y1][(int)points.x1];
 	zoom(&points, data);
 	color(data, z, z1);
-	isometric(&points.x, &points.y, z);
-	isometric(&points.x1, &points.y1, z1);
+	if (data->iso == 1)
+		isometric(&points, data, z, z1);
 	shift(&points, data);
 	x_step = points.x1 - points.x;
 	y_step = points.y1 - points.y;

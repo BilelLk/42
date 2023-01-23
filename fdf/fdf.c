@@ -12,28 +12,7 @@
 
 #include "fdf.h"
 
-int	deal_key(int key, fdf *data)
-{
-	if (key == 126)
-		data->shift_y -= 10;
-	if (key == 125)
-		data->shift_y += 10;
-	if (key == 123)
-		data->shift_x -= 10;
-	if (key == 124)
-		data->shift_x += 10;
-	if (key == 53)
-		free_all(data);
-	mlx_destroy_image(data->mlx_ptr, data->img);
-	data->img = mlx_new_image(data->mlx_ptr, 1000, 1000);
-	data->addr = mlx_get_data_addr(data->img, \
-	&data->bits_per_pixel,&data->line_length, \
-	&data->endian);
-	draw(data);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, \
-	data->img, 0, 0);
-	return (0);
-}
+
 
 int main(int argc, char **argv)
 {
@@ -45,9 +24,10 @@ int main(int argc, char **argv)
 	if (!data)
 		exit (0);
 	read_file(argv[1], data);
+	init_data(data);
 	data->mlx_ptr = mlx_init();
-	data->win_ptr = mlx_new_window(data->mlx_ptr, 1000, 1000, "FDF");
-	data->img = mlx_new_image(data->mlx_ptr, 1000, 1000);
+	data->win_ptr = mlx_new_window(data->mlx_ptr, WIN_V, WIN_H, "FDF");
+	data->img = mlx_new_image(data->mlx_ptr, WIN_V, WIN_H);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
 		&data->line_length, &data->endian);
 	data->bits_per_pixel /= 8;

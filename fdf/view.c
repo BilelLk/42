@@ -12,10 +12,12 @@
 
 #include "fdf.h"
 
-void	isometric(float  *x, float  *y, int z)
+void	isometric(t_points *points, fdf	*data, int z, int z1)
 {
-	*x = (*x - *y) * cos(0.8);
-	*y = (*x + *y) * sin(0.8) - z;
+	points->x = (points->x - points->y) * cos(data->angle_x);
+	points->y = (points->x + points->y) * sin(data->angle_y) - z;
+	points->x1 = (points->x1 - points->y1) * cos(data->angle_x);
+	points->y1 = (points->x1 + points->y1) * sin(data->angle_y) - z1;
 }
 
 void	zoom(t_points *points, fdf *data)
@@ -40,4 +42,15 @@ void	color(fdf *data, int z, int z1)
 		data->color = 0xe80c0c;
 	else
 		data->color = 0xffffff;
+}
+
+void	init_data(fdf *data)
+{
+	data->angle_x = 0.8;
+	data->angle_y = 0.8;
+	data->shift_x = 800;
+	data->shift_x = 800;
+	data->zoom = 1;
+	data->iso = 1;
+	data->z_coef = 1;
 }

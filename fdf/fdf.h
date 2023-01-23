@@ -20,6 +20,13 @@
 # include "libft/libft.h"
 # include <stdio.h>
 
+# ifndef WIN_H
+#  define WIN_H 1080
+# endif
+# ifndef WIN_V
+#  define WIN_V 1920
+# endif
+
 typedef struct  s_fdf
 {
 	int		**z_matrix;
@@ -30,9 +37,13 @@ typedef struct  s_fdf
     int		height;
 	int		zoom;
 	int		color;
+	int		iso;
+	int		z_coef;
 
 	int		shift_x;
 	int		shift_y;
+	float	angle_x;
+	float	angle_y;
 
 	void	*img;
 	char	*addr;
@@ -60,9 +71,11 @@ void	ft_free_tab(fdf *data, int i);
 float	maximum(float a, float b);
 float	modulo(float a);
 float	mod(float i);
-void	isometric(float  *x, float  *y, int z);
+void	isometric(t_points *points, fdf	*data, int z, int z1);
 void	zoom(t_points *points, fdf *data);
 void	shift(t_points *points, fdf *data);
 void	color(fdf *data, int z, int z1);
+void	init_data(fdf *data);
+int		deal_key(int key, fdf *data);
 
 #endif
