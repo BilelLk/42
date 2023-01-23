@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 int	deal_key(int key, fdf *data)
 {
@@ -23,6 +22,8 @@ int	deal_key(int key, fdf *data)
 		data->shift_x -= 10;
 	if (key == 124)
 		data->shift_x += 10;
+	if (key == 53)
+		free_all(data);
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	draw(data);
 	return (0);
@@ -41,4 +42,5 @@ int main(int argc, char **argv)
 	draw(data);
 	mlx_key_hook(data->win_ptr, deal_key, data);
 	mlx_loop(data->mlx_ptr);
+	free_all(data);
 }

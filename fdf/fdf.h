@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include "mlx/mlx.h"
 # include "libft/libft.h"
+# include <stdio.h>
 
 typedef struct  s_fdf
 {
@@ -35,5 +36,7 @@ typedef struct  s_fdf
 void    read_file(char *file_name, fdf *data);
 void	bresenham(float x, float y, float x1, float y1, fdf *data);
 void	draw(fdf *data);
+void	free_all(fdf *data);
+void	ft_free_tab(fdf *data, int i);
 
 #endif
