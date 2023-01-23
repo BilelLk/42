@@ -22,6 +22,8 @@
 
 typedef struct  s_fdf
 {
+	int		xmax;
+	int		ymax;
     int		width;
     int		height;
 	int		zoom;
@@ -38,8 +40,16 @@ typedef struct  s_fdf
 	int		endian;
 }   fdf;
 
+typedef struct s_points
+{
+	float	x;
+	float	x1;
+	float	y;
+	float	y1;
+}			t_points;
+
 void    read_file(char *file_name, fdf *data);
-void	bresenham(float x, float y, float x1, float y1, fdf *data);
+void	bresenham(t_points points, fdf *data);
 void	draw(fdf *data);
 void	free_all(fdf *data);
 void	ft_free_tab(fdf *data, int i);

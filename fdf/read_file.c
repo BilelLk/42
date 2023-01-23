@@ -35,7 +35,7 @@ int	ft_wordcounter(char const *s, char c)
 	return (wordcount);
 }
 
-int	get_height(char *file_name)
+int	get_height(fdf *data, char *file_name)
 {
 	char	*line;
 	int		fd;
@@ -49,10 +49,11 @@ int	get_height(char *file_name)
 		free(line);
 	}
 	close (fd);
+	data->ymax = height;
 	return (height);
 }
 
-int	get_width(char *file_name)
+int	get_width(fdf *data, char *file_name)
 {
 	int 	width;
 	int 	fd;
@@ -61,6 +62,7 @@ int	get_width(char *file_name)
 	fd = open(file_name, O_RDONLY, 0);
 	line = get_next_line(fd);
 	width = ft_wordcounter(line, ' ');
+	data->xmax = width;
 	free(line);
 	close(fd);
 	return (width);
@@ -88,8 +90,8 @@ void    read_file(char *file_name, fdf *data)
 	char	*line;
 	int		i;
 
-	data->height = get_height(file_name);
-	data->width = get_width(file_name);
+	data->height = get_height(data, file_name);
+	data->width = get_width(data, file_name);
 	data->z_matrix = (int **)malloc(sizeof (int*) * (data->height + 1));
 	i = 0;
 	while (i < data->height)

@@ -39,8 +39,9 @@ int main(int argc, char **argv)
 {
 	fdf *data;
 
-	(void)(argc);
-	data = (fdf*)malloc(sizeof(fdf));
+	if (argc != 2)
+		return (0);
+	data = (fdf *)malloc(sizeof(fdf));
 	if (!data)
 		exit (0);
 	read_file(argv[1], data);
