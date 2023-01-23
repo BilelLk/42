@@ -22,22 +22,26 @@
 
 typedef struct  s_fdf
 {
+	int		**z_matrix;
 	int		xmax;
 	int		ymax;
+
     int		width;
     int		height;
 	int		zoom;
 	int		color;
+
 	int		shift_x;
 	int		shift_y;
-    int		**z_matrix;
-    void	*mlx_ptr;
-    void	*win_ptr;
+
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+
+	void	*mlx_ptr;
+	void	*win_ptr;
 }   fdf;
 
 typedef struct s_points
@@ -57,5 +61,8 @@ float	maximum(float a, float b);
 float	modulo(float a);
 float	mod(float i);
 void	isometric(float  *x, float  *y, int z);
+void	zoom(t_points *points, fdf *data);
+void	shift(t_points *points, fdf *data);
+void	color(fdf *data, int z, int z1);
 
 #endif

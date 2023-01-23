@@ -32,17 +32,11 @@ void	bresenham(t_points points, fdf *data)
 
 	z = data->z_matrix[(int)points.y][(int)points.x];
 	z1 = data->z_matrix[(int)points.y1][(int)points.x1];
-	points.x *= data->zoom;
-	points.y *= data->zoom;
-	points.x1 *= data->zoom;
-	points.y1 *= data->zoom;
-	data->color = (z || z1) ? 0xe80c0c : 0xffffff;
+	zoom(&points, data);
+	color(data, z, z1);
 	isometric(&points.x, &points.y, z);
 	isometric(&points.x1, &points.y1, z1);
-	points.x += data->shift_x;
-	points.y += data->shift_y;
-	points.x1 += data->shift_x;
-	points.y1 += data->shift_y;
+	shift(&points, data);
 	x_step = points.x1 - points.x;
 	y_step = points.y1 - points.y;
 	max = maximum(modulo(x_step), modulo(y_step));
