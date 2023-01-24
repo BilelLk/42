@@ -32,3 +32,26 @@ float	mod(float i)
 		return (-i);
 	return (i);
 }
+
+int	ft_wordcounter(char const *s, char c)
+{
+	int	wordcount;
+	int	i;
+
+	wordcount = 0;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+		{
+			while (s[i] == c)
+				i++;
+		}
+		if (s[i] == '\0')
+			break ;
+		while (s[i] && s[i] != c)
+			i++;
+		wordcount++;
+	}
+	return (wordcount);
+}

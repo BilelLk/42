@@ -12,7 +12,13 @@
 
 #include "fdf.h"
 
-void	ft_free_tab(fdf *data, int i)
+int	close_window(t_fdf *data)
+{
+	free_all(data);
+	return (0);
+}
+
+void	ft_free_tab(t_fdf *data, int i)
 {
 	int	j;
 
@@ -20,19 +26,22 @@ void	ft_free_tab(fdf *data, int i)
 	while (j < i)
 		free(data->z_matrix[j++]);
 	free(data->z_matrix);
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	free(data);
-	exit(0);
+	if (data->mlx_ptr && data->win_ptr)
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	exit(EXIT_FAILURE);
 }
 
-void	free_all(fdf *data)
+void	free_all(t_fdf *data)
 {
 	int	i;
 
 	i = 0;
 	while (i < data->height)
 		free(data->z_matrix[i++]);
+	if (data->mlx_ptr && data->win_ptr)
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	if (data->mlx_ptr && data->img)
+		mlx_destroy_image(data->mlx_ptr, data->img);
 	free(data->z_matrix);
-	free(data);
 	exit(0);
 }

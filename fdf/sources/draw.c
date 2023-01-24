@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "define.h"
 
-void	my_mlx_pixel_put(fdf *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_fdf *data, int x, int y, int color)
 {
 	int	*dst;
 
@@ -22,21 +23,19 @@ void	my_mlx_pixel_put(fdf *data, int x, int y, int color)
 	dst[y * WIN_V + x] = color;
 }
 
-void	bresenham(t_points points, fdf *data)
+void	bresenham(t_points points, t_fdf *data)
 {
 	float	x_step;
 	float	y_step;
-	int 	max;
-	int 	z;
-	int 	z1;
+	int		max;
 
-	z = data->z_matrix[(int)points.y][(int)points.x];
-	z1 = data->z_matrix[(int)points.y1][(int)points.x1];
+	points.z = data->z_matrix[(int)points.y][(int)points.x];
+	points.z1 = data->z_matrix[(int)points.y1][(int)points.x1];
 	zoom(&points, data);
-	color(data, z, z1);
 	if (data->iso == 1)
-		isometric(&points, data, z, z1);
+		isometric(&points, data, points.z, points.z1);
 	shift(&points, data);
+	set_color(&points, data);
 	x_step = points.x1 - points.x;
 	y_step = points.y1 - points.y;
 	max = maximum(modulo(x_step), modulo(y_step));
@@ -50,7 +49,7 @@ void	bresenham(t_points points, fdf *data)
 	}
 }
 
-void	draw(fdf *data)
+void	draw(t_fdf *data)
 {
 	t_points	points;
 
@@ -62,7 +61,7 @@ void	draw(fdf *data)
 		{
 			if (points.x < data->xmax - 1)
 			{
-				points.x1 = (points.x) + 1;
+				points.x1 = points.x + 1;
 				points.y1 = points.y;
 				bresenham(points, data);
 			}

@@ -19,12 +19,12 @@ RED_1=\033[1m
 
 NAME		=	fdf
 
-INC			=	fdf.h
-INC_DIR		=	./
+INC			=	fdf.h define.h
+INC_DIR		=	./includes/
 
 HEADERS		= $(addprefix $(INC_DIR), $(INC))
 
-SRC_DIR		=	./
+SRC_DIR		=	./sources/
 SRC			=	fdf.c 			\
 				read_file.c		\
 				draw.c 			\
@@ -49,18 +49,18 @@ MLX_FLAG = -lm -framework OpenGL -framework AppKit
 
 all: build_libft $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT_A) $(MLX_A)
+$(NAME): $(OBJ) $(LIBFT_A) $(MLX_A) $(LIBFT_DIR)
 		$(CC) $(CC_FLAGS) $(OBJ) $(LIBFT_A) $(MLX_A) $(MLX_FLAG) -o $@
 		echo "${GREEN}Beginning of Compilation😊${NONE}"
 		cd .progress_bar/ && ./heavy_work.sh
 
-build_libft:
-		$(MAKE) -s -C $(LIBFT_DIR)
+build_libft: $(LIBFT_DIR)
+		$(MAKE) -C $(LIBFT_DIR)
 
 $(MLX_A): $(MLX_DIR)
-		$(MAKE) -s -C $(MLX_DIR)
+		$(MAKE) -C $(MLX_DIR)
 
-$(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(LIBFT_DIR) $(HEADERS)
+$(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS)
 		mkdir -p $(@D)
 		$(CC) $(CC_FLAGS) -I$(INC_DIR) -I$(LIBFT_INC) -I$(MLX_DIR) -c $< -o $@
 

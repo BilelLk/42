@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "define.h"
 
-void	isometric(t_points *points, fdf	*data, int z, int z1)
+void	isometric(t_points *points, t_fdf	*data, int z, int z1)
 {
 	points->x = (points->x - points->y) * cos(data->angle_x);
 	points->y = (points->x + points->y) * sin(data->angle_y) - z;
@@ -20,7 +21,7 @@ void	isometric(t_points *points, fdf	*data, int z, int z1)
 	points->y1 = (points->x1 + points->y1) * sin(data->angle_y) - z1;
 }
 
-void	zoom(t_points *points, fdf *data)
+void	zoom(t_points *points, t_fdf *data)
 {
 	points->x *= data->zoom;
 	points->y *= data->zoom;
@@ -28,7 +29,7 @@ void	zoom(t_points *points, fdf *data)
 	points->y1 *= data->zoom;
 }
 
-void	shift(t_points *points, fdf *data)
+void	shift(t_points *points, t_fdf *data)
 {
 	points->x += data->shift_x;
 	points->y += data->shift_y;
@@ -36,21 +37,27 @@ void	shift(t_points *points, fdf *data)
 	points->y1 += data->shift_y;
 }
 
-void	color(fdf *data, int z, int z1)
+void	set_color(t_points *points, t_fdf *data)
 {
-	if (z || z1)
-		data->color = 0xe80c0c;
-	else
-		data->color = 0xffffff;
+	if (points->z <= 0 || points->z1 <= 5)
+		data->color = BLUE;
+	if ((points->z > 5 && points->z <= 50) || \
+	(points->z1 > 5 && points->z1 <= 50))
+		data->color = GREEN;
+	if ((points->z > 50 && points->z <= 200) || \
+	(points->z1 > 50 && points->z1 <= 200))
+		data->color = BROWN;
+	if ((points->z > 200) && (points->z1 > 200))
+		data->color = YELLOW;
 }
 
-void	init_data(fdf *data)
+void	init_data(t_fdf *data)
 {
-	data->angle_x = 0.8;
-	data->angle_y = 0.8;
-	data->shift_x = 800;
-	data->shift_x = 800;
-	data->zoom = 1;
-	data->iso = 1;
-	data->z_coef = 1;
+	data->angle_x = ANGLE;
+	data->angle_y = ANGLE;
+	data->shift_x = SHIFT;
+	data->shift_x = SHIFT;
+	data->zoom = ZOOM;
+	data->iso = ISO;
+	data->z_coef = Z_COEF;
 }

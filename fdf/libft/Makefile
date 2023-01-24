@@ -10,26 +10,15 @@
 #                                                                              #
 # **************************************************************************** #
 
-NONE=\033[0m
-GREEN=\033[32m
-GRAY=\033[2;37m
-CURSIVE=\033[3m
-RED_0=\033[31m
-RED_1=\033[1m
+NAME		   :=   libft.a
 
-NAME = libft.a
+INC            :=   libft.h
+INC_DIR        :=   includes/
 
-CC = cc
+HEADERS        :=   $(addprefix $(INC_DIR), $(INC))
 
-FLAGS = -Wall -Wextra -Werror
-
-RM = rm -rf
-
-AR              = ar rcs
-
-OBJS_DIR		= OBJ/
-
-SRCS = 	ft_isalpha.c \
+SRC_DIR        :=   sources/
+SRC				:= 	ft_isalpha.c \
 	   ft_isdigit.c \
 	   ft_isalnum.c \
 	   ft_isascii.c \
@@ -66,45 +55,44 @@ SRCS = 	ft_isalpha.c \
 	   get_next_line.c \
 	   get_next_line_utils.c \
 
-SRCS_BONUS = ft_lstnew.c \
-			ft_lstadd_front.c \
-			ft_lstsize.c \
-			ft_lstlast.c \
-			ft_lstadd_back.c \
-			ft_lstdelone.c \
-			ft_lstclear.c \
-			ft_lstiter.c \
-			ft_lstmap.c
+OBJ_DIR        :=    build/
+OBJ            :=    $(SRC:%.c=$(OBJ_DIR)%.o)
 
-OBJS    = $(addprefix ${OBJS_DIR}, $(SRCS:.c=.o))
+# Compiler options
+CC            :=    cc
+CC_FLAGS      :=    -Wextra -Werror -Wall #-fsanitize=address -g3
+DEBUG_FLAG    :=    -ggdb3
 
-OBJS_B = $(addprefix ${OBJS_DIR}, ${SRCS_BONUS:.c=.o})
+# define standard colors
+_END        :=    \x1b[0m
+_BOLD       :=    \x1b[1m
+_UNDER      :=    \x1b[4m
+_REV        :=    \x1b[7m
+_GREY       :=    \x1b[30m
+_RED        :=    \x1b[31m
+_GREEN      :=    \x1b[32m
+_YELLOW     :=    \x1b[33m
+_BLUE       :=    \x1b[34m
+_PURPLE     :=    \x1b[35m
+_CYAN       :=    \x1b[36m
+_WHITE      :=    \x1b[37m
 
-HEADER = libft.h
+all: $(NAME)
 
-all :	${NAME}
+$(NAME): $(OBJ)
+	@ar rc $(NAME) $(OBJ)
 
-$(OBJS_DIR)%.o: %.c ${HEADER}
-				mkdir -p ${OBJS_DIR}
-				${CC} ${FLAGS} -I. -c $< -o $@
+$(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS)
+	@mkdir -p $(@D)
+	$(CC) $(CC_FLAGS) -I$(INC_DIR) -c $< -o $@
 
-
-${NAME} : 		${OBJS} ${HEADER}
-				mkdir -p ${OBJS_DIR}
-				${AR} ${NAME} ${OBJS}
-
-bonus: 			${OBJS_B} ${HEADER}
-				mkdir -p ${OBJS_DIR}
-				${AR} ${NAME} ${OBJS_B}
-
+# clean commands
 clean:
-				${RM} ${OBJS_DIR}
+	@rm -rf $(OBJ_DIR)
 
-fclean :        clean
-				${RM} ${NAME}
+fclean: clean
+	@rm -rf $(NAME)
 
-re :            fclean all
+re: fclean all
 
-.SILENT : 		clean fclean $(NAME) re $(SRCS:.c=.o) dir all bonus
-
-.PHONY:         all clean fclean re bonus
+.PHONY: all clean fclean re bonus

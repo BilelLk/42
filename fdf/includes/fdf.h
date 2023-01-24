@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   t_fdf.h                                              :+:      :+:    :+: */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -16,25 +16,17 @@
 # include <stdlib.h>
 # include <math.h>
 # include <fcntl.h>
-# include "mlx/mlx.h"
-# include "libft/libft.h"
-# include <stdio.h>
+# include "../mlx/mlx.h"
+# include "../libft/includes/libft.h"
 
-# ifndef WIN_H
-#  define WIN_H 1080
-# endif
-# ifndef WIN_V
-#  define WIN_V 1920
-# endif
-
-typedef struct  s_fdf
+typedef struct s_fdf
 {
 	int		**z_matrix;
 	int		xmax;
 	int		ymax;
 
-    int		width;
-    int		height;
+	int		width;
+	int		height;
 	int		zoom;
 	int		color;
 	int		iso;
@@ -53,7 +45,7 @@ typedef struct  s_fdf
 
 	void	*mlx_ptr;
 	void	*win_ptr;
-}   fdf;
+}	t_fdf;
 
 typedef struct s_points
 {
@@ -61,21 +53,26 @@ typedef struct s_points
 	float	x1;
 	float	y;
 	float	y1;
+	int		z;
+	int		z1;
 }			t_points;
 
-void    read_file(char *file_name, fdf *data);
-void	bresenham(t_points points, fdf *data);
-void	draw(fdf *data);
-void	free_all(fdf *data);
-void	ft_free_tab(fdf *data, int i);
+void	read_file(char *file_name, t_fdf *data);
+void	bresenham(t_points points, t_fdf *data);
+void	draw(t_fdf *data);
+void	free_all(t_fdf *data);
+void	ft_free_tab(t_fdf *data, int i);
 float	maximum(float a, float b);
 float	modulo(float a);
 float	mod(float i);
-void	isometric(t_points *points, fdf	*data, int z, int z1);
-void	zoom(t_points *points, fdf *data);
-void	shift(t_points *points, fdf *data);
-void	color(fdf *data, int z, int z1);
-void	init_data(fdf *data);
-int		deal_key(int key, fdf *data);
+void	isometric(t_points *points, t_fdf	*data, int z, int z1);
+void	zoom(t_points *points, t_fdf *data);
+void	shift(t_points *points, t_fdf *data);
+void	color(t_fdf *data, int z, int z1);
+void	init_data(t_fdf *data);
+int		deal_key(int key, t_fdf *data);
+void	set_color(t_points *points, t_fdf *data);
+int		close_window(t_fdf *data);
+int		ft_wordcounter(char const *s, char c);
 
 #endif
