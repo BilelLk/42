@@ -6,11 +6,11 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:42:00 by blakehal          #+#    #+#             */
-/*   Updated: 2022/11/16 09:51:21 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/24 13:26:03 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {

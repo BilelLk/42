@@ -6,11 +6,11 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:55:01 by blakehal          #+#    #+#             */
-/*   Updated: 2022/11/16 10:10:41 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/24 13:26:03 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 static int	ft_whitesapce(const char *str)
 {

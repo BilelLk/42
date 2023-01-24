@@ -6,11 +6,11 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 16:03:38 by blakehal          #+#    #+#             */
-/*   Updated: 2022/11/16 10:03:42 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/24 13:26:03 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {

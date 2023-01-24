@@ -32,9 +32,14 @@ void	init_mlx(t_fdf *data)
 int	main(int argc, char **argv)
 {
 	t_fdf	data;
+	int		len;
 
 	if (argc != 2)
 		return (0);
+	len = ft_strlen(argv[1]);
+	if (argv[1][len - 4] != '.' && argv[1][len - 3] != 'f' && \
+	argv[1][len - 2] != 'd' && argv[1][len - 1] != 'f')
+		exit (1);
 	ft_bzero(&data, sizeof (t_fdf));
 	data.img = NULL;
 	read_file(argv[1], &data);
