@@ -29,8 +29,8 @@ void	bresenham(t_points points, t_fdf *data)
 	float	y_step;
 	int		max;
 
-	points.z = data->z_matrix[(int)points.y][(int)points.x];
-	points.z1 = data->z_matrix[(int)points.y1][(int)points.x1];
+	points.z = data->z_matrix[(int)points.y][(int)points.x] * data->z_coef;
+	points.z1 = data->z_matrix[(int)points.y1][(int)points.x1] * data -> z_coef;
 	zoom(&points, data);
 	if (data->iso == 1)
 		isometric(&points, data, points.z, points.z1);

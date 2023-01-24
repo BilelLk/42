@@ -47,7 +47,7 @@ void	set_color(t_points *points, t_fdf *data)
 	if ((points->z > 50 && points->z <= 200) || \
 	(points->z1 > 50 && points->z1 <= 200))
 		data->color = BROWN;
-	if ((points->z > 200) && (points->z1 > 200))
+	if ((points->z > 200) || (points->z1 > 200))
 		data->color = YELLOW;
 }
 
