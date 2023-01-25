@@ -6,7 +6,7 @@
 #    By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/31 19:38:26 by blakehal          #+#    #+#              #
-#    Updated: 2022/12/31 19:38:26 by blakehal         ###   ########lyon.fr    #
+#    Updated: 2023/01/25 16:40:25 by blakehal         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRCS			= ft_parsing.c \
 				  ft_sort_little.c \
 				  ft_utils1.c \
 				  ft_utils2.c \
-				  ft_utils_solve3.c
+				  ft_utils_solve3.c \
+				  ft_bzero.c 
 OBJS_SRCS		= $(addprefix ${OBJS_DIR}, $(SRCS:.c=.o))
 
 SRCS_PS			= ft_push_swap.c ft_utils_solve1.c ft_utils_solve2.c
@@ -46,7 +47,7 @@ NAME_BON		= checker
 HEAD			= ft_push_swap.h
 CC				= cc
 RM				= rm -rf
-FLAGS			= -Wall -Wextra -Werror
+FLAGS			= -Wall -Wextra -Werror -g3
 
 all:			${NAME}
 

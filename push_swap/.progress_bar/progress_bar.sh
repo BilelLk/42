@@ -27,6 +27,6 @@ function show_progress {
     echo -ne "${normal}\rProgress of Compilation: [${green}${done_sub_bar}${red}${todo_sub_bar}${normal}] ${percent}%"
 
     if [ $total -eq $current ]; then
-         echo -e "${green}\nCompiling DONE!💪"
+         echo -e "${green}\nCompiling DONE!💪${normal}"
     fi
 }

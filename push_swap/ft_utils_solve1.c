@@ -50,3 +50,25 @@ int	ft_max_index(t_stack *stack)
 	}
 	return (ft_side(++i, stack->len_a));
 }
+
+static void	ft_best_move_remix(t_stack *stack, int *cost_b, int *cost_a)
+{
+	int	abs_a;
+
+	abs_a = stack->len_a - ft_abs(*cost_a);
+	while (abs_a)
+	{
+		if (*cost_b < 0)
+			rrr(stack);
+		else
+			rr(stack);
+		abs_a--;
+	}
+	*cost_a = 0;
+}
+
+void	ft_cost_b_over_len_a(t_stack *stack, int *cost_a, int *cost_b)
+{
+	if (ft_abs(*cost_b) > (stack->len_a - ft_abs(*cost_a)))
+		ft_best_move_remix(stack, cost_b, cost_a);
+}

@@ -5,5 +5,7 @@
     <mapping directory="$PROJECT_DIR$/fdf_test" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/push_swap/Push_Swap-Tester" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/push_swap/SCROS" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/push_swap/Tester/Push_Swap-Tester" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/push_swap/Tester/SCROS" vcs="Git" />
   </component>
 </project>

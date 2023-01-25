@@ -6,13 +6,13 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 12:39:34 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/17 15:03:51 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/25 16:37:52 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-static int	ft_find_15_percent_smaller_bigger(int *array, int array_size, \
+static int	ft_find_17_percent_smaller_bigger(int *array, int array_size, \
 t_find f)
 {
 	float	ratio;
@@ -45,9 +45,9 @@ static void	ft_a_to_b(t_stack *stack)
 {
 	while (stack->len_a > 17)
 	{
-		if (!ft_find_15_percent_smaller_bigger(stack->a, stack->len_a, SMALLER))
+		if (!ft_find_17_percent_smaller_bigger(stack->a, stack->len_a, SMALLER))
 		{
-			if (!ft_find_15_percent_smaller_bigger(stack->a, stack->len_a, \
+			if (!ft_find_17_percent_smaller_bigger(stack->a, stack->len_a, \
 			BIGGER))
 				ra(stack);
 			else
@@ -56,7 +56,7 @@ static void	ft_a_to_b(t_stack *stack)
 		else
 		{
 			pb(stack);
-			if (!ft_find_15_percent_smaller_bigger(stack->a, stack->len_a, \
+			if (!ft_find_17_percent_smaller_bigger(stack->a, stack->len_a, \
 			BIGGER))
 				rr(stack);
 			else
@@ -79,6 +79,7 @@ static void	ft_b_to_a(t_stack *stack)
 		cost_a = 0;
 		cost_b = 0;
 		ft_min_rotate(stack, &cost_a, &cost_b);
+		ft_cost_b_over_len_a(stack, &cost_a, &cost_b);
 		ft_best_rr(stack, &cost_a, &cost_b);
 		ft_best_move(stack, A, cost_a);
 		ft_best_move(stack, B, cost_b);
@@ -106,7 +107,8 @@ int	main(int argc, char **argv)
 	if (!stack)
 		return (1);
 	if (ft_duplicates_stack(stack))
-		ft_error();
+		return (write(2, "Error\n", 6), \
+		ft_free_all(stack, BIGGER), 1);
 	stack->print = 1;
 	stack->len = stack->len_a;
 	if (ft_is_not_sorted(stack))
@@ -120,6 +122,5 @@ int	main(int argc, char **argv)
 		else
 			solve(stack);
 	}
-	ft_free_stack(stack, ALL);
-	return (0);
+	return (ft_free_all(stack, SMALLER), 0);
 }

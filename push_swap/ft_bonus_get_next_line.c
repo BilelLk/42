@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:02:41 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/05 11:21:39 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/25 15:47:07 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*ft_clean(char *tmp)
 	while (tmp[i])
 		swap[j++] = tmp[i++];
 	swap[j] = '\0';
-	return (free(tmp), swap);
+	return (free(tmp), tmp = NULL, swap);
 }
 
 static char	*ft_implement(char *tmp)
@@ -73,7 +73,7 @@ static char	*ft_strjoin(char *tmp, char *buffer)
 	{
 		tmp = malloc(sizeof(char) * 1);
 		if (!tmp)
-			return (free(tmp), NULL);
+			return (NULL);
 		tmp[0] = '\0';
 	}
 	final = malloc(sizeof(char) * (ft_strlen(tmp) + ft_strlen(buffer) + 1));
@@ -87,7 +87,7 @@ static char	*ft_strjoin(char *tmp, char *buffer)
 	while (buffer[j])
 		final[i++] = buffer[j++];
 	final[i] = 0;
-	return (free(tmp), final);
+	return (free(tmp), tmp = NULL, final);
 }
 
 static char	*ft_read(int fd, char *tmp)
@@ -103,6 +103,8 @@ static char	*ft_read(int fd, char *tmp)
 			return (NULL);
 		buffer[nb_bytes] = '\0';
 		tmp = ft_strjoin(tmp, buffer);
+		if (!tmp)
+			return (NULL);
 	}
 	return (tmp);
 }

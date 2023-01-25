@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 12:39:27 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/17 15:01:45 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/25 16:39:28 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,16 @@ void	ft_min_rotate(t_stack *stack, int *a, int *b);
 int		ft_max(t_stack *stack);
 int		ft_max_index(t_stack *stack);
 int		ft_abs(int nb);
+void	ft_cost_b_over_len_a(t_stack *stack, int *cost_a, int *cost_b);
 
 	/*------------------------------------------/
 	/				UTILS						/
 	/------------------------------------------*/
 
 void	ft_error(void);
-void	*ft_free_stack(t_stack *stack, t_stacks stacks);
+// void	*ft_free_stack(t_stack *stack, t_stacks stacks, t_find f);
+void	ft_free_all(t_stack *stack, t_find f);
+void	ft_bzero(void *s, size_t n);
 void	ft_putstr(char *str);
 void	ft_rotate_up(int *stack, int *len);
 void	ft_rotate_down(int *stack, int *len);

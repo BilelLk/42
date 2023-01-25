@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 12:38:25 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/17 15:01:53 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/01/25 16:38:12 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,33 @@ void	ft_putstr(char *s)
 	ft_putchar('\n');
 }
 
-void	ft_error(void)
+void	ft_free_all(t_stack *stack, t_find f)
 {
-	write(2, "Error\n", 6);
-	exit (-1);
+	if (stack)
+	{
+		if (stack->a)
+			free(stack->a);
+		if (stack->b)
+			free(stack->b);
+		free(stack);
+	}
+	if (f == BIGGER)
+		exit (1);
+	else
+		exit (0);
 }
 
-void	*ft_free_stack(t_stack *stack, t_stacks stacks)
-{
-	if (stacks)
-		free(stack->a);
-	if (stacks == ALL)
-		free(stack->b);
-	free(stack);
-	exit (0);
-}
+// void	*ft_free_stack(t_stack *stack, t_stacks stacks, t_find f)
+// {
+// 	if (stacks == A)
+// 		free(stack->a);
+// 	if (stacks == B)
+// 		free(stack->b);
+// 	if (stacks == ALL)
+// 	{
+// 	//	free(stack->a);
+// 		free(stack->b);
+// 	}
+// 	free(stack);
+//
+// }
