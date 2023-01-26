@@ -47,7 +47,7 @@ NAME_BON		= checker
 HEAD			= ft_push_swap.h
 CC				= cc
 RM				= rm -rf
-FLAGS			= -Wall -Wextra -Werror -g3
+FLAGS			= -Wall -Wextra -Werror
 
 all:			${NAME}
 
