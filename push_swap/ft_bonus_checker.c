@@ -12,12 +12,6 @@
 
 #include "ft_push_swap.h"
 
-static void	ft_error_inst(t_stack *stack)
-{
-	write(2, "Error\n", 6);
-	ft_free_all(stack, BIGGER);
-}
-
 static int	ft_str_cmp(char *s1, char *s2)
 {
 	int	j;
@@ -58,7 +52,7 @@ static void	ft_instructions(char *line, t_stack *stack)
 	else if (ft_str_cmp(line, "rrr"))
 		rrr(stack);
 	else
-		ft_error_inst(stack);
+		ft_error(stack);
 }
 
 int	main(int argc, char **argv)
@@ -72,8 +66,7 @@ int	main(int argc, char **argv)
 	if (!stack)
 		return (1);
 	if (ft_duplicates_stack(stack))
-		return (write(2, "Error\n", 6), \
-		ft_free_all(stack, BIGGER), 1);
+		return (ft_error(stack), 1);
 	stack->print = 0;
 	while (1)
 	{

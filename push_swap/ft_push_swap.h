@@ -70,13 +70,12 @@ void	ft_cost_b_over_len_a(t_stack *stack, int *cost_a, int *cost_b);
 	/				UTILS						/
 	/------------------------------------------*/
 
-void	ft_error(void);
-// void	*ft_free_stack(t_stack *stack, t_stacks stacks, t_find f);
 void	ft_free_all(t_stack *stack, t_find f);
 void	ft_bzero(void *s, size_t n);
 void	ft_putstr(char *str);
 void	ft_rotate_up(int *stack, int *len);
 void	ft_rotate_down(int *stack, int *len);
+void	ft_error(t_stack *stack);
 
 	/*------------------------------------------/
 	/				PARSING						/

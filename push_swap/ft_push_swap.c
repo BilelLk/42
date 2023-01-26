@@ -107,8 +107,7 @@ int	main(int argc, char **argv)
 	if (!stack)
 		return (1);
 	if (ft_duplicates_stack(stack))
-		return (write(2, "Error\n", 6), \
-		ft_free_all(stack, BIGGER), 1);
+		return (ft_error(stack), 1);
 	stack->print = 1;
 	stack->len = stack->len_a;
 	if (ft_is_not_sorted(stack))

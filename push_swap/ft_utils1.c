@@ -48,17 +48,8 @@ void	ft_free_all(t_stack *stack, t_find f)
 		exit (0);
 }
 
-// void	*ft_free_stack(t_stack *stack, t_stacks stacks, t_find f)
-// {
-// 	if (stacks == A)
-// 		free(stack->a);
-// 	if (stacks == B)
-// 		free(stack->b);
-// 	if (stacks == ALL)
-// 	{
-// 	//	free(stack->a);
-// 		free(stack->b);
-// 	}
-// 	free(stack);
-//
-// }
+void	ft_error(t_stack *stack)
+{
+	write(2, "Error\n", 6);
+	ft_free_all(stack, BIGGER);
+}
