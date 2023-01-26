@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
+#include <stdio.h>
 
 static int	ft_str_cmp(char *s1, char *s2)
 {
@@ -76,7 +77,8 @@ int	main(int argc, char **argv)
 		ft_instructions(line, stack);
 		free(line);
 	}
-	if (ft_is_not_sorted(stack) || (!ft_is_not_sorted(stack) && stack->b[0]))
+	printf("stack->b[0] = %d\n", stack->b[0]);
+	if (ft_is_not_sorted(stack) || (!ft_is_not_sorted(stack) && stack->len_b))
 		ft_putstr("\033[91mKO\033[0m");
 	else
 		ft_putstr("\033[92mOK\033[0m");
