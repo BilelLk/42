@@ -76,7 +76,7 @@ int	main(int argc, char **argv)
 		ft_instructions(line, stack);
 		free(line);
 	}
-	if (ft_is_not_sorted(stack))
+	if (ft_is_not_sorted(stack) || (!ft_is_not_sorted(stack) && stack->b[0]))
 		ft_putstr("\033[91mKO\033[0m");
 	else
 		ft_putstr("\033[92mOK\033[0m");
