@@ -57,7 +57,7 @@ Also, even accepting a string of numbers, if you try to input a word or a letter
 
 ##Visualizer
 
-https://youtu.be/4m7n-5vAbkI
+[![Video Label](http://img.youtube.com/vi/8h7a7NxztkM/0.jpg)](https://youtu.be/4m7n-5vAbkI)
 
 ## Acknowledgements
 
