@@ -57,7 +57,7 @@ Also, even accepting a string of numbers, if you try to input a word or a letter
 
 ##Visualizer
 
-[![Video Label](http://img.youtube.com/vi/8h7a7NxztkM/0.jpg)](https://youtu.be/4m7n-5vAbkI)
+[![Video Label](https://github.com/BilelLk/42/blob/main/push_swap/.img/preview_ps.png)](https://youtu.be/4m7n-5vAbkI)
 
 ## Acknowledgements
 
