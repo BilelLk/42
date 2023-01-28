@@ -1,9 +1,9 @@
 # Push-Swap-42
 
 ___
-<div style="text-align: center">
-![Score_ps](https://github.com/BilelLk/42/blob/main/push_swap/img/score_push_swap.png)
-</div>
+
+![Score_ps](https://github.com/BilelLk/42/blob/main/push_swap/img/500_result_p_s.png)
+
 Push_Swap is a 42-SP project which consist to produce a sorting Algorithm following some
 concepts to standardize the process;
 We were free to develop this project with any tools created or available (respecting the 42-norm);
