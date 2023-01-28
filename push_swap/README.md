@@ -57,7 +57,7 @@ Also, even accepting a string of numbers, if you try to input a word or a letter
 
 ##Visualizer
 
-<iframe width="560" height="315" src="https://youtu.be/4m7n-5vAbkI[P_S_Vizualizer]" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+https://youtu.be/4m7n-5vAbkI
 
 ## Acknowledgements
 
