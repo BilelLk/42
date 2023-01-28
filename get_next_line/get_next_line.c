@@ -112,7 +112,7 @@ char	*ft_clean(char *tmp)
 		return (free(tmp), NULL);
 	if (tmp[i] == '\n')
 		i++;
-	swap = malloc(sizeof(char) * ((ft_strlen(tmp) - i) + 1));
+	swap = malloc(sizeof(char) * ((ft_strlen(tmp) - (i - 1)));
 	if (!swap)
 		return (NULL);
 	j = 0;

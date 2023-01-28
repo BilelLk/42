@@ -27,6 +27,6 @@ function show_progress {
     echo -ne "${normal}\rProgress of Deletion: [${red}${done_sub_bar}${green}${todo_sub_bar}${normal}] ${percent}%"
 
     if [ $total -eq $current ]; then
-        echo -e "${red}\nCleaning is done 🧹"
+        echo -e "${red}\nCleaning is done 🧹${normal}"
     fi
 }

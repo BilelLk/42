@@ -78,6 +78,6 @@ fclean: clean
 
 re: fclean all
 
-.SILENT : clean fclean $(NAME) re $(SRCS:.c=.o) dir all bonus build_libft
+.SILENT :
 
 .PHONY: all clean fclean re build_libft
