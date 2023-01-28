@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bonus_get_next_line_utils.c                     :+:      :+:    :+:   */
+/*   ft_sort_little.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 15:07:38 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/05 12:28:16 by blakehal         ###   ########lyon.fr   */
+/*   Created: 2022/12/11 16:13:56 by blakehal          #+#    #+#             */
+/*   Updated: 2023/01/04 14:46:20 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_push_swap.h"
+#include "../includes/ft_push_swap.h"
 
-int	ft_strrchr(char *s, char c)
+void	ft_sort_little(t_stack *stack)
 {
-	size_t	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	if (c == '\0')
-		return (0);
-	while (s[i])
+	while (stack->len_a > 3)
 	{
-		if (s[i] == c)
-			return (1);
-		i++;
+		ft_best_move(stack, A, ft_min_index(stack));
+		pb(stack);
 	}
-	return (0);
+	ft_sort_three(stack);
+	pa(stack);
+	pa(stack);
 }

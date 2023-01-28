@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bonus_get_next_line_utils.c                     :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 15:07:38 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/05 12:28:16 by blakehal         ###   ########lyon.fr   */
+/*   Created: 2022/11/13 16:42:18 by blakehal          #+#    #+#             */
+/*   Updated: 2022/11/14 10:58:11 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_push_swap.h"
+#include "libft.h"
 
-int	ft_strrchr(char *s, char c)
+int	ft_lstsize(t_list *lst)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	if (!s)
+	if (!lst)
 		return (0);
-	if (c == '\0')
-		return (0);
-	while (s[i])
+	while (lst)
 	{
-		if (s[i] == c)
-			return (1);
+		lst = lst->next;
 		i++;
 	}
-	return (0);
+	return (i);
 }

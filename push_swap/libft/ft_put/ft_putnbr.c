@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bonus_get_next_line_utils.c                     :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 15:07:38 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/05 12:28:16 by blakehal         ###   ########lyon.fr   */
+/*   Created: 2022/11/18 18:55:29 by blakehal          #+#    #+#             */
+/*   Updated: 2022/11/19 10:27:28 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_push_swap.h"
+#include "libft.h"
 
-int	ft_strrchr(char *s, char c)
+int	ft_putnbr(int nbr)
 {
-	size_t	i;
+	unsigned long	a;
+	static int		i;
+	int				sign;
 
 	i = 0;
-	if (!s)
-		return (0);
-	if (c == '\0')
-		return (0);
-	while (s[i])
+	sign = 0;
+	if (nbr == -2147483648)
 	{
-		if (s[i] == c)
-			return (1);
-		i++;
+		write(1, "-2147483648", 11);
+		return (11);
 	}
-	return (0);
+	if (nbr < 0)
+	{
+		a = -nbr;
+		write(1, "-", 1);
+		sign++;
+	}
+	else
+		a = nbr;
+	if (a > 9)
+		ft_putnbr(a / 10);
+	i += ft_putchar((a % 10) + 48);
+	return (i + sign);
 }

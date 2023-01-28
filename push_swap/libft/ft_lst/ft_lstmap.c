@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bonus_get_next_line_utils.c                     :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 15:07:38 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/05 12:28:16 by blakehal         ###   ########lyon.fr   */
+/*   Created: 2022/11/14 07:24:06 by blakehal          #+#    #+#             */
+/*   Updated: 2022/11/14 10:57:29 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_push_swap.h"
+#include"libft.h"
 
-int	ft_strrchr(char *s, char c)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t	i;
+	t_list	*lst_new;
+	t_list	*temp;
 
-	i = 0;
-	if (!s)
+	if (!lst || !f || !del)
 		return (0);
-	if (c == '\0')
-		return (0);
-	while (s[i])
+	lst_new = 0;
+	while (lst)
 	{
-		if (s[i] == c)
-			return (1);
-		i++;
+		temp = ft_lstnew(f(lst->content));
+		if (!temp)
+		{
+			ft_lstclear(&lst_new, del);
+			return (0);
+		}
+		ft_lstadd_back(&lst_new, temp);
+		lst = lst->next;
 	}
-	return (0);
+	return (lst_new);
 }

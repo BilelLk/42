@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bonus_get_next_line_utils.c                     :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 15:07:38 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/05 12:28:16 by blakehal         ###   ########lyon.fr   */
+/*   Created: 2022/11/07 18:25:38 by blakehal          #+#    #+#             */
+/*   Updated: 2022/11/12 14:28:44 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_push_swap.h"
+#include "libft.h"
 
-int	ft_strrchr(char *s, char c)
+void	ft_bzero(void *s, size_t n)
 {
-	size_t	i;
+	unsigned char	*k;
 
-	i = 0;
-	if (!s)
-		return (0);
-	if (c == '\0')
-		return (0);
-	while (s[i])
+	k = s;
+	while (n != 0)
 	{
-		if (s[i] == c)
-			return (1);
-		i++;
+		*k = 0;
+		k++;
+		n--;
 	}
-	return (0);
 }

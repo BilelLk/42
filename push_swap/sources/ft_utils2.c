@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bonus_get_next_line_utils.c                     :+:      :+:    :+:   */
+/*   ft_utils2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 15:07:38 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/05 12:28:16 by blakehal         ###   ########lyon.fr   */
+/*   Created: 2023/01/12 12:38:12 by blakehal          #+#    #+#             */
+/*   Updated: 2023/01/12 12:38:12 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_push_swap.h"
+#include "../includes/ft_push_swap.h"
 
-int	ft_strrchr(char *s, char c)
+void	ft_rotate_up(int *stack, int *len)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	if (!s)
-		return (0);
-	if (c == '\0')
-		return (0);
-	while (s[i])
+	*len -= 1;
+	while (i < *len)
 	{
-		if (s[i] == c)
-			return (1);
+		stack[i] = stack[i + 1];
 		i++;
 	}
-	return (0);
+}
+
+void	ft_rotate_down(int *stack, int *len)
+{
+	int	i;
+
+	i = 1;
+	while (i <= *len)
+	{
+		stack[*len - i + 1] = stack[*len - i];
+		i++;
+	}
+	*len += 1;
 }

@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bonus_get_next_line_utils.c                     :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 15:07:38 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/05 12:28:16 by blakehal         ###   ########lyon.fr   */
+/*   Created: 2022/11/08 16:46:58 by blakehal          #+#    #+#             */
+/*   Updated: 2022/11/12 19:11:31 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_push_swap.h"
+#include "libft.h"
 
-int	ft_strrchr(char *s, char c)
+char	*ft_strchr(const char *s, int c)
 {
-	size_t	i;
+	char	*b;
+	int		i;
 
 	i = 0;
-	if (!s)
-		return (0);
-	if (c == '\0')
-		return (0);
-	while (s[i])
-	{
-		if (s[i] == c)
-			return (1);
+	b = (char *)s;
+	while (b[i] && b[i] != (char)c)
 		i++;
-	}
-	return (0);
+	if (b[i] == (char)c)
+		return (&b[i]);
+	return (NULL);
 }

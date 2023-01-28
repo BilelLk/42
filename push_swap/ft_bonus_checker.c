@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_push_swap.h"
+#include "includes/ft_push_swap.h"
 #include <stdio.h>
 
 static int	ft_str_cmp(char *s1, char *s2)

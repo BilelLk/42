@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_push_swap.h"
+#include "includes/ft_push_swap.h"
 
 static char	*ft_clean(char *tmp)
 {

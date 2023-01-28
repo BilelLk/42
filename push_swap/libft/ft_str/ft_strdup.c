@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bonus_get_next_line_utils.c                     :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 15:07:38 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/05 12:28:16 by blakehal         ###   ########lyon.fr   */
+/*   Created: 2022/11/09 15:48:33 by blakehal          #+#    #+#             */
+/*   Updated: 2022/11/12 14:38:11 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_push_swap.h"
+#include "libft.h"
 
-int	ft_strrchr(char *s, char c)
+char	*ft_strdup(const char *s1)
 {
-	size_t	i;
+	char	*final;
+	int		i;
+	int		len;
 
 	i = 0;
-	if (!s)
-		return (0);
-	if (c == '\0')
-		return (0);
-	while (s[i])
+	len = ft_strlen(s1);
+	final = malloc(len * sizeof(char) + 1);
+	if (!final)
+		return (NULL);
+	while (s1[i])
 	{
-		if (s[i] == c)
-			return (1);
+		final[i] = s1[i];
 		i++;
 	}
-	return (0);
+	final[i] = 0;
+	return (final);
 }

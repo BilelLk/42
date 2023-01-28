@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bonus_get_next_line_utils.c                     :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 15:07:38 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/05 12:28:16 by blakehal         ###   ########lyon.fr   */
+/*   Created: 2022/11/10 16:02:49 by blakehal          #+#    #+#             */
+/*   Updated: 2022/11/14 10:58:26 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_push_swap.h"
+#include "libft.h"
 
-int	ft_strrchr(char *s, char c)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	i;
+	unsigned int	i;
+	char			*final;
+	int				len_final;
 
 	i = 0;
-	if (!s)
-		return (0);
-	if (c == '\0')
-		return (0);
+	if (!s || !(*f))
+		return (NULL);
+	len_final = ft_strlen(s);
+	final = malloc(sizeof(char) * len_final + 1);
+	if (!final)
+		return (NULL);
 	while (s[i])
 	{
-		if (s[i] == c)
-			return (1);
+		final[i] = (*f)(i, s[i]);
 		i++;
 	}
-	return (0);
+	final[i] = 0;
+	return (final);
 }

@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bonus_get_next_line_utils.c                     :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 15:07:38 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/05 12:28:16 by blakehal         ###   ########lyon.fr   */
+/*   Created: 2022/11/07 18:36:16 by blakehal          #+#    #+#             */
+/*   Updated: 2022/11/11 17:54:20 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_push_swap.h"
+#include "libft.h"
 
-int	ft_strrchr(char *s, char c)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t	i;
+	unsigned char	*source;
+	unsigned char	*dest;
 
-	i = 0;
-	if (!s)
+	dest = (unsigned char *)dst;
+	source = (unsigned char *)src;
+	if (!dst && !src)
 		return (0);
-	if (c == '\0')
-		return (0);
-	while (s[i])
+	while (n--)
 	{
-		if (s[i] == c)
-			return (1);
-		i++;
+		*dest = *source;
+		dest++;
+		source++;
 	}
-	return (0);
+	return (dst);
 }

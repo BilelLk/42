@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bonus_get_next_line_utils.c                     :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 15:07:38 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/05 12:28:16 by blakehal         ###   ########lyon.fr   */
+/*   Created: 2022/11/09 16:16:16 by blakehal          #+#    #+#             */
+/*   Updated: 2022/11/13 15:39:05 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_push_swap.h"
+#include "libft.h"
 
-int	ft_strrchr(char *s, char c)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
+	char	*final;
+	int		i;
+	int		j;
 
 	i = 0;
-	if (!s)
-		return (0);
-	if (c == '\0')
-		return (0);
-	while (s[i])
+	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	final = malloc(sizeof(char) * ft_strlen(s2) + ft_strlen(s1) + 1);
+	if (!final)
+		return (NULL);
+	while (s1[i])
 	{
-		if (s[i] == c)
-			return (1);
+		final[i] = s1[i];
 		i++;
 	}
-	return (0);
+	while (s2[j])
+	{
+		final[i] = s2[j];
+		j++;
+		i++;
+	}
+	final[i] = 0;
+	return (final);
 }

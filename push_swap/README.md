@@ -55,6 +55,10 @@ Also, even accepting a string of numbers, if you try to input a word or a letter
 - There is also a visualizer (pyviz.py), it uses the operations that your program produces and present a graphic representation of this proccess. Keep in mind that you need to have installed python and the Tkinter lib;
 - There is also an script in perl to automate the list generation and execution of the program, created by a fellow cadetes in 42-SP (ps_tester.pl) - Please, check the notion produced;
 
+##Visualizer
+
+<iframe width="560" height="315" src="ttps://youtu.be/4m7n-5vAbkI[P_S_Vizualizer]" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Acknowledgements
 
 - [Florian Guirama](https://github.com/Florian1215)

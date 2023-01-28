@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bonus_get_next_line_utils.c                     :+:      :+:    :+:   */
+/*   ft_putptr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 15:07:38 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/05 12:28:16 by blakehal         ###   ########lyon.fr   */
+/*   Created: 2022/11/17 20:14:44 by blakehal          #+#    #+#             */
+/*   Updated: 2022/11/19 10:56:45 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_push_swap.h"
+#include "libft.h"
 
-int	ft_strrchr(char *s, char c)
+static int	ptr_conv(unsigned long long nbr, char *base)
 {
-	size_t	i;
+	unsigned long	a;
+	static int		i;
 
 	i = 0;
-	if (!s)
-		return (0);
-	if (c == '\0')
-		return (0);
-	while (s[i])
+	if (nbr < 0)
 	{
-		if (s[i] == c)
-			return (1);
+		a = -nbr;
+		write(1, "-", 1);
 		i++;
 	}
-	return (0);
+	else
+		a = nbr;
+	if (a > 15)
+		ptr_conv((a / 16), base);
+	i += ft_putchar(base[nbr % 16]);
+	return (i);
+}
+
+int	ft_putptr_base(unsigned long long nbr, char *base)
+{
+	write(1, "0x", 2);
+	return (ptr_conv(nbr, base) + 2);
 }

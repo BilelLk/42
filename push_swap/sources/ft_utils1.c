@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bonus_get_next_line_utils.c                     :+:      :+:    :+:   */
+/*   ft_utils1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 15:07:38 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/05 12:28:16 by blakehal         ###   ########lyon.fr   */
+/*   Created: 2023/01/12 12:38:25 by blakehal          #+#    #+#             */
+/*   Updated: 2023/01/25 16:38:12 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_push_swap.h"
+#include "../includes/ft_push_swap.h"
 
-int	ft_strrchr(char *s, char c)
+void	ft_free_all(t_stack *stack, t_find f)
 {
-	size_t	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	if (c == '\0')
-		return (0);
-	while (s[i])
+	if (stack)
 	{
-		if (s[i] == c)
-			return (1);
-		i++;
+		if (stack->a)
+			free(stack->a);
+		if (stack->b)
+			free(stack->b);
+		free(stack);
 	}
-	return (0);
+	if (f == BIGGER)
+		exit (1);
+	else
+		exit (0);
+}
+
+void	ft_error(t_stack *stack)
+{
+	write(2, "Error\n", 6);
+	ft_free_all(stack, BIGGER);
 }
