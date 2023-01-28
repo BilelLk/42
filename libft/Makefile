@@ -35,6 +35,12 @@ SRCS = 	ft_is/ft_isalpha.c			\
 		ft_put/ft_putstr_fd.c		\
 		ft_put/ft_putendl_fd.c		\
 		ft_put/ft_putnbr_fd.c		\
+		ft_put/ft_putchar.c			\
+		ft_put/ft_putnbr_base.c		\
+		ft_put/ft_putptr_base.c		\
+		ft_put/ft_putstr.c			\
+		ft_put/ft_putunbr_base.c	\
+		ft_put/ft_putnbr.c			\
 		ft_str/ft_strlen.c			\
 		ft_str/ft_strlcpy.c			\
 		ft_str/ft_strlcat.c			\
@@ -62,6 +68,7 @@ SRCS = 	ft_is/ft_isalpha.c			\
 		ft_tolower.c				\
 		ft_atoi.c					\
 		ft_itoa.c					\
+		ft_printf/ft_printf.c		\
 
 CC				=	gcc
 RM				=	rm -rf
