@@ -2,7 +2,7 @@
 
 ___
 
-![Score_ps](https://github.com/BilelLk/42/blob/main/push_swap/img/500_result_p_s.png)
+![Score_ps](https://github.com/BilelLk/42/blob/main/push_swap/img/score_push_swap.png)
 
 Push_Swap is a 42-SP project which consist to produce a sorting Algorithm following some
 concepts to standardize the process;
