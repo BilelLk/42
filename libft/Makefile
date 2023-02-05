@@ -85,17 +85,12 @@ all:		$(NAME)
 
 $(NAME):	$(OBJS)
 			$(LIBC) $(NAME) $(OBJS)
-			echo "${GREEN}Beginning of Compilation😊${NONE}"
-			cd .progress_bar/ && ./heavy_work.sh
 
 clean:
 			$(RM) $(DIR_BUILD)
-			echo "${RED_0}Removing ${RED_1}objects files...😔"
 
 fclean:		clean
 			$(RM) $(NAME)
-			echo "         and executable file...😔${NONE}"
-			cd .progress_bar/ && ./heavy_work_invert.sh
 
 re:			fclean
 			make all

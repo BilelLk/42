@@ -17,7 +17,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include "../mlx/mlx.h"
-# include "../libft/includes/libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_fdf
 {

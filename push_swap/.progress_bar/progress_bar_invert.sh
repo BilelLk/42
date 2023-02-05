@@ -6,7 +6,7 @@ green=$(tput setaf 2)
 
 bar_size=100
 bar_char_done="-"
-bar_char_todo="█"
+bar_char_todo="#"
 bar_percentage_scale=0
 
 function show_progress {
@@ -27,6 +27,6 @@ function show_progress {
     echo -ne "${normal}\rProgress of Deletion: [${red}${done_sub_bar}${green}${todo_sub_bar}${normal}] ${percent}%"
 
     if [ $total -eq $current ]; then
-        echo -e "${red}\nCleaning is done 🧹${normal}"
+        echo -e "${red}\nCleaning is done ${normal}"
     fi
 }

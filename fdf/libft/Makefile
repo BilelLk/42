@@ -10,89 +10,98 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		   :=   libft.a
+NONE=\033[0m
+GREEN=\033[32m
+GRAY=\033[2;37m
+CURSIVE=\033[3m
+RED_0=\033[31m
+RED_1=\033[1m
 
-INC            :=   libft.h
-INC_DIR        :=   includes/
+SRCS = 	ft_is/ft_isalpha.c			\
+		ft_is/ft_isdigit.c			\
+		ft_is/ft_isalnum.c			\
+		ft_is/ft_isascii.c			\
+		ft_is/ft_isprint.c			\
+		ft_malloc/ft_bzero.c		\
+		ft_malloc/ft_calloc.c		\
+		ft_malloc/ft_split.c		\
+		ft_malloc/ft_substr.c		\
+		ft_mem/ft_memset.c			\
+		ft_mem/ft_memcpy.c			\
+		ft_mem/ft_memmove.c			\
+		ft_mem/ft_memchr.c			\
+		ft_mem/ft_memcmp.c			\
+		ft_put/ft_putchar_fd.c		\
+		ft_put/ft_putstr_fd.c		\
+		ft_put/ft_putendl_fd.c		\
+		ft_put/ft_putnbr_fd.c		\
+		ft_put/ft_putchar.c			\
+		ft_put/ft_putnbr_base.c		\
+		ft_put/ft_putptr_base.c		\
+		ft_put/ft_putstr.c			\
+		ft_put/ft_putunbr_base.c	\
+		ft_put/ft_putnbr.c			\
+		ft_str/ft_strlen.c			\
+		ft_str/ft_strlcpy.c			\
+		ft_str/ft_strlcat.c			\
+		ft_str/ft_strnstr.c			\
+		ft_str/ft_strjoin.c			\
+		ft_str/ft_strtrim.c			\
+		ft_str/ft_strmapi.c			\
+		ft_str/ft_striteri.c		\
+		ft_str/ft_strchr.c			\
+		ft_str/ft_strrchr.c			\
+		ft_str/ft_strncmp.c			\
+		ft_str/ft_strdup.c			\
+		gnl/get_next_line.c			\
+		gnl/get_next_line_utils.c	\
+		ft_lst/ft_lstadd_front.c	\
+		ft_lst/ft_lstsize.c			\
+		ft_lst/ft_lstlast.c			\
+		ft_lst/ft_lstadd_back.c		\
+		ft_lst/ft_lstdelone.c		\
+		ft_lst/ft_lstclear.c		\
+		ft_lst/ft_lstiter.c			\
+		ft_lst/ft_lstmap.c			\
+		ft_lst/ft_lstnew.c			\
+		ft_toupper.c				\
+		ft_tolower.c				\
+		ft_atoi.c					\
+		ft_itoa.c					\
+		ft_printf/ft_printf.c		\
 
-HEADERS        :=   $(addprefix $(INC_DIR), $(INC))
+CC				=	gcc
+RM				=	rm -rf
+CFLAGS			=	-Wall -Wextra -Werror
+NAME			=	libft.a
+LIBC			=	ar rcs
+DIR_INCS		=	.
+DIR_BUILD		=	.build/
+OBJS			=	$(patsubst %.c, $(DIR_BUILD)%.o, $(SRCS))
+DEPS			=	$(patsubst %.c, $(DIR_BUILD)%.d, $(SRCS))
+DEPS_FLAGS		=	-MMD -MP
 
-SRC_DIR        :=   sources/
-SRC				:= 	ft_isalpha.c \
-	   ft_isdigit.c \
-	   ft_isalnum.c \
-	   ft_isascii.c \
-	   ft_isprint.c \
-	   ft_strlen.c \
-	   ft_memset.c \
-	   ft_bzero.c \
-	   ft_memcpy.c \
-	   ft_memmove.c \
-	   ft_strlcpy.c \
-	   ft_strlcat.c \
-	   ft_toupper.c \
-	   ft_tolower.c \
-	   ft_strchr.c \
-	   ft_strrchr.c \
-	   ft_strncmp.c \
-	   ft_memchr.c \
-	   ft_memcmp.c \
-	   ft_strnstr.c \
-	   ft_atoi.c \
-	   ft_calloc.c \
-	   ft_strdup.c \
-	   ft_substr.c \
-	   ft_strjoin.c \
-	   ft_strtrim.c \
-	   ft_split.c \
-	   ft_itoa.c \
-	   ft_strmapi.c \
-	   ft_striteri.c \
-	   ft_putchar_fd.c \
-	   ft_putstr_fd.c \
-	   ft_putendl_fd.c \
-	   ft_putnbr_fd.c \
-	   get_next_line.c \
-	   get_next_line_utils.c \
+all:		$(NAME)
 
-OBJ_DIR        :=    build/
-OBJ            :=    $(SRC:%.c=$(OBJ_DIR)%.o)
+$(NAME):	$(OBJS)
+			$(LIBC) $(NAME) $(OBJS)
 
-# Compiler options
-CC            :=    cc
-CC_FLAGS      :=    -Wextra -Werror -Wall #-fsanitize=address -g3
-DEBUG_FLAG    :=    -ggdb3
-
-# define standard colors
-_END        :=    \x1b[0m
-_BOLD       :=    \x1b[1m
-_UNDER      :=    \x1b[4m
-_REV        :=    \x1b[7m
-_GREY       :=    \x1b[30m
-_RED        :=    \x1b[31m
-_GREEN      :=    \x1b[32m
-_YELLOW     :=    \x1b[33m
-_BLUE       :=    \x1b[34m
-_PURPLE     :=    \x1b[35m
-_CYAN       :=    \x1b[36m
-_WHITE      :=    \x1b[37m
-
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	@ar rc $(NAME) $(OBJ)
-
-$(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS)
-	@mkdir -p $(@D)
-	$(CC) $(CC_FLAGS) -I$(INC_DIR) -c $< -o $@
-
-# clean commands
 clean:
-	@rm -rf $(OBJ_DIR)
+			$(RM) $(DIR_BUILD)
 
-fclean: clean
-	@rm -rf $(NAME)
+fclean:		clean
+			$(RM) $(NAME)
 
-re: fclean all
+re:			fclean
+			make all
 
-.PHONY: all clean fclean re bonus
+-include $(DEPS)
+
+$(DIR_BUILD)%.o : %.c
+			mkdir -p $(shell dirname $@)
+			$(CC) $(CFLAGS) $(DEPS_FLAGS) $(DIR_INCS:%=-I %) -c $< -o $@
+
+.SILENT :
+
+.PHONY: all clean fclean re
+

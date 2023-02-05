@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 static char	*ft_test(char const *s, unsigned int start, size_t len, char *final)
 {
@@ -30,9 +30,7 @@ static char	*ft_test(char const *s, unsigned int start, size_t len, char *final)
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*final;
-	size_t	i;
 
-	i = 0;
 	if (!s)
 		return (NULL);
 	else if (start >= ft_strlen(s))

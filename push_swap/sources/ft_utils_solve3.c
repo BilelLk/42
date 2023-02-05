@@ -68,10 +68,8 @@ int	ft_min_index(t_stack *stack)
 {
 	int		min;
 	int		i;
-	int		j;
 
 	i = 0;
-	j = 0;
 	min = ft_min(stack);
 	while (i != stack->len_a)
 	{

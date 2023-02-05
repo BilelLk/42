@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 static int	u_conv(unsigned long nbr, unsigned int len_base, char *base)
 {

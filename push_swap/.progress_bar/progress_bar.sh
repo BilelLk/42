@@ -5,7 +5,7 @@ normal=$(tput sgr0)
 green=$(tput setaf 2)
 
 bar_size=100
-bar_char_done="█"
+bar_char_done="#"
 bar_char_todo="-"
 bar_percentage_scale=2
 
@@ -27,6 +27,6 @@ function show_progress {
     echo -ne "${normal}\rProgress of Compilation: [${green}${done_sub_bar}${red}${todo_sub_bar}${normal}] ${percent}%"
 
     if [ $total -eq $current ]; then
-         echo -e "${green}\nCompiling DONE!💪${normal}"
+         echo -e "${green}\nCompiling DONE!${normal}"
     fi
 }

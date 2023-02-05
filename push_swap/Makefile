@@ -11,11 +11,11 @@
 # **************************************************************************** #
 
 NONE=\033[0m
-GREEN=\033[32m
-GRAY=\033[2;37m
+GREEN=\033[0;32m
+GRAY=\033[0;37m
 CURSIVE=\033[3m
-RED_0=\033[31m
-RED_1=\033[1m
+RED=\033[0;31m
+
 
 NAME		=	push_swap
 
@@ -47,14 +47,14 @@ LIBFT_INC	=	libft
 OBJ_DIR		=	build/
 OBJ			=	$(SRC:%.c=$(OBJ_DIR)%.o)
 
-CC			=	gcc -g3
+CC			=	gcc
 CC_FLAGS	=	-Wextra -Werror -Wall
 
 all: build_libft $(NAME)
 
 $(NAME): $(LIBFT_A) $(OBJ)
 		$(CC) $(CC_FLAGS) $(OBJ) $(LIBFT_A) -o $@
-		echo "${GREEN}Beginning of Compilation😊${NONE}"
+		echo -e "${GREEN}Beginning of Compilation${NONE}"
 		cd .progress_bar/ && ./heavy_work.sh
 
 build_libft: $(LIBFT_DIR)
@@ -67,12 +67,12 @@ $(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS)
 clean:
 		$(MAKE) clean -C $(LIBFT_DIR)
 		rm -rf $(OBJ_DIR)
-		echo "${RED_0}Removing ${RED_1}objects files...😔"
+		echo -e "${RED}Removing objects files..."
 
 fclean: clean
 		rm -rf $(NAME)
 		$(MAKE) fclean -s -C $(LIBFT_DIR)
-		echo "         and executable file...😔${NONE}"
+		echo -e "         and executable file..."
 		cd .progress_bar/ && ./heavy_work_invert.sh
 
 re: fclean all

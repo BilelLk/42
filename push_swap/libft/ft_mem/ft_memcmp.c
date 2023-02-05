@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
@@ -21,7 +21,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	i = 0;
 	source1 = (unsigned char *)s1;
 	source2 = (unsigned char *)s2;
-	while (i != n && (source1 != '\0' || source2 != '\0'))
+	while (i != n && (source1[i] != '\0' || source2[i] != '\0'))
 	{
 		if (source1[i] != source2[i])
 		{

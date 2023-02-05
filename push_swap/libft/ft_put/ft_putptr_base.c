@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 static int	ptr_conv(unsigned long long nbr, char *base)
 {
@@ -18,14 +18,7 @@ static int	ptr_conv(unsigned long long nbr, char *base)
 	static int		i;
 
 	i = 0;
-	if (nbr < 0)
-	{
-		a = -nbr;
-		write(1, "-", 1);
-		i++;
-	}
-	else
-		a = nbr;
+    a = nbr;
 	if (a > 15)
 		ptr_conv((a / 16), base);
 	i += ft_putchar(base[nbr % 16]);

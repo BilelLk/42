@@ -30,14 +30,7 @@ static int	base_conv(unsigned int nbr, unsigned int len_base, char *base)
 
 	i = 0;
 	sign = 1;
-	if (nbr < 0)
-	{
-		a = -nbr;
-		write(1, "-", 1);
-		sign = !sign;
-	}
-	else
-		a = nbr;
+    a = nbr;
 	if (a >= len_base)
 		base_conv((a / len_base), len_base, base);
 	i += ft_putchar(base[a % len_base]);
