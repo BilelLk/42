@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/11 09:25:48 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/06 20:40:04 by blakehal         ###   ########.fr       */
+/*   Created: 2023/03/06 20:04:13 by blakehal          #+#    #+#             */
+/*   Updated: 2023/03/06 20:07:37 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+char    *ft_strncpy(char *dest, char *src, unsigned int n)
 {
-	int	i;
+    unsigned int        i;
 
-	i = 0;
-	if (!s)
-		return ;
-	while (s[i])
-	{
-		ft_putchar_fd(s[i], fd);
-		i++;
-	}
-	ft_putchar_fd('\n', fd);
+    i = 0;
+    while (src[i] && i < n)
+    {
+        dest[i] = src[i];
+        i++;
+    }
+    while (i < n)
+    {
+        dest[i] = '\0';
+        i++;
+    }
+    return (dest);
 }

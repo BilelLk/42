@@ -6,18 +6,11 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:57:13 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/05 14:02:41 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/06 20:22:19 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
-
-void	ft_error_argc(void)
-{
-	ft_putendl_fd(ARG_ERROR, 2);
-	ft_putendl_fd(PIPE_MODEL, 2);
-	exit(1);
-}
 
 // Free all allocation in t_pipeex
 // Close input and ouput files
@@ -27,54 +20,68 @@ void	parent_free(t_pipe *pipex)
 
 	i = 0;
 	if (pipex->cmd_paths)
-	{
-		while (pipex->cmd_paths[i])
-		{
-			free(pipex->cmd_paths[i]);
-			i++;
-		}
-		free(pipex->cmd_paths);
-	}
+		ft_free_split(pipex->cmd_paths);
+	if (pipex->cmd_args)
+		ft_free_split(pipex->cmd_args);
+	if (pipex->cmd)
+		free(pipex->cmd);
 	if (pipex->pipe)
 	{
 		i = 0;
-		while (i < pipex->nb_cmd)
+		while (i < pipex->nb_cmd - 1)
 		{
 			free(pipex->pipe[i]);
 			i++;
 		}
 		free(pipex->pipe);
 	}
+	if (pipex->pid)
+		free(pipex->pid);
 }
 
-void	ft_exit(t_pipe *pipex, char *str, t_error e_type, t_print print)
+void	ft_exit(t_pipe *pipex, char *str)
 {
-	if (print == YES)
-		perror(str);
-	if (e_type == FILES)
+	ft_close_everything(pipex);
+	parent_free(pipex);
+	if (str)
+		ft_putendl_fd(str, 2);
+	exit(1);
+}
+
+void	ft_close(int *fd)
+{
+	int	tmp;
+
+	tmp = *fd;
+	*fd = 0;
+	if (tmp > 0)
+		close(tmp);
+}
+
+void	ft_close_everything(t_pipe *pipex)
+{
+	int	i;
+
+	i = 0;
+	ft_close(&pipex->infile);
+	ft_close(&pipex->outfile);
+	while (i < pipex->nb_cmd - 1)
 	{
-		close_pipes(pipex);
-		parent_free(pipex);
-		exit(1);
+		ft_close(&pipex->pipe[i][0]);
+		ft_close(&pipex->pipe[i][1]);
+		i++;
 	}
-	else if (e_type == FORK)
+}
+
+void	ft_free_split(char **to_free)
+{
+	int i;
+
+	i = 0;
+	while (to_free[i])
 	{
-		close_pipes(pipex);
-		parent_free(pipex);
-		exit(1);
+		free(to_free[i]);
+		i++;
 	}
-	else if (e_type == PARSING)
-	{
-		close_pipes(pipex);
-		if (pipex->infile > 0 && pipex->err_infile != -1)
-			close(pipex->infile);
-		if (pipex->outfile > 0 && pipex->err_outfile != -1)
-			close(pipex->outfile);
-		free(pipex->cmd);
-		parent_free(pipex);
-		pipex->cmd = NULL;
-		pipex->cmd_args = NULL;
-		pipex->env_path = NULL;
-		exit(1);
-	}
+	free(to_free);
 }

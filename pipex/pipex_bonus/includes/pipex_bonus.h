@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipeh_bonus.h                                      :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:58:41 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/05 13:58:42 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/06 20:21:19 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,15 @@ typedef struct s_pip
 	char	*cmd;
 	char	*env_path;
 	int		infile;
-	int		pid;
+	int		*pid;
 	int		outfile;
 	int		index;
 	int		err_infile;
 	int		err_outfile;
 	int		nb_cmd;
+	int		argc;
+	char	**argv;
 }	t_pipe;
-
-typedef enum e_error
-{
-	FILES,
-	PIPES,
-	FORK,
-	ARGC,
-	NONE,
-	PARSING,
-}	t_error;
-
-typedef enum e_print
-{
-	YES,
-	NO,
-}	t_print;
 
 // files_utils
 void	create_pipes(t_pipe *p);
@@ -63,13 +49,16 @@ char	*find_path(char **env);
 
 // free_utils
 void	parent_free(t_pipe *p);
-void	ft_error_argc(void);
-void	ft_exit(t_pipe *pipex, char *str, t_error exit, t_print print);
+void	ft_close(int *fd);
+// void	ft_exit(t_pipe *pipex, char *str, t_error exit, t_print print);
+void	ft_exit(t_pipe *pipex, char *str);
 
 // parsing
-void	parsing_error_cmd(t_pipe *p, int argc, char **argv);
+int	parsing_error_cmd(t_pipe *pipex);
 
 // process
-void	process(t_pipe *p, int argc, char **argv, char **env);
+void	process(t_pipe *pipex, char **env);
+void	ft_close_everything(t_pipe *pipex);
+void	ft_free_split(char **to_free);
 
 #endif 

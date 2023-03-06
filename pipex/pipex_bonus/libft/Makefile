@@ -6,7 +6,7 @@
 #    By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 09:32:22 by blakehal          #+#    #+#              #
-#    Updated: 2023/03/01 14:23:35 by blakehal         ###   ########.fr        #
+#    Updated: 2023/03/06 20:04:38 by blakehal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,8 @@ SRCS = 	ft_is/ft_isalpha.c			\
 		ft_str/ft_strrchr.c			\
 		ft_str/ft_strncmp.c			\
 		ft_str/ft_strdup.c			\
+		ft_str/ft_strndup.c			\
+		ft_str/ft_strncpy.c			\
 		gnl/get_next_line.c			\
 		gnl/get_next_line_utils.c	\
 		ft_lst/ft_lstadd_front.c	\
