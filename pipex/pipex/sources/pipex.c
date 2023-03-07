@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:54:37 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/07 17:53:18 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/07 17:56:22 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv, char **env)
 	t_pipe	pipex;
 
 	ft_bzero(&pipex, sizeof(t_pipe));
-	if (argc < 5)
+	if (argc != 5)
 		ft_error_argc();
 	get_file(&pipex, argv, argc);
 	init_pipex(&pipex, argc, argv, env);

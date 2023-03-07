@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_bonus.h                                      :+:      :+:    :+:   */
+/*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:58:41 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/07 17:23:32 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/07 17:56:14 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "../libft/libft.h"
 
 # define ARG_ERROR		"Invalid parameters:"
-# define PIPE_MODEL		"./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2"
+# define PIPE_MODEL		"./pipex file1 cmd1 cmd2 file2"
 # define FORK_ERROR		"Fork error"
 # define EXEC_ERROR		"Execution Error"
 # define PATH_PREFIX	"PATH="
