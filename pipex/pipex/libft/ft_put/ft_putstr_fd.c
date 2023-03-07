@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 20:03:11 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/07 14:40:41 by blakehal         ###   ########.fr       */
+/*   Created: 2022/11/11 09:23:02 by blakehal          #+#    #+#             */
+/*   Updated: 2022/11/12 15:30:25 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*ft_strndup(char *s, size_t n)
+void	ft_putstr_fd(char *s, int fd)
 {
-	char	*new;
+	int	i;
 
-	new = malloc(n + 1);
-	if (new)
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i])
 	{
-		ft_strncpy(new, s, n);
-		new[n] = '\0';
+		ft_putchar_fd(s[i], fd);
+		i++;
 	}
-	return (new);
 }

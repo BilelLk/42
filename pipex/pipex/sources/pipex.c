@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_bonus.c                                      :+:      :+:    :+:   */
+/*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:54:37 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/07 16:52:55 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/07 17:53:18 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "pipex.h"
 
 static void	init_pipex(t_pipe *pipex, int argc, char **argv, char **env);
 static void	get_file(t_pipe *p, char **argv, int argc);

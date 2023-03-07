@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 20:03:11 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/07 14:40:41 by blakehal         ###   ########.fr       */
+/*   Created: 2022/11/09 15:48:33 by blakehal          #+#    #+#             */
+/*   Updated: 2022/11/12 14:38:11 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*ft_strndup(char *s, size_t n)
+char	*ft_strdup(const char *s1)
 {
-	char	*new;
+	char	*final;
+	int		i;
+	int		len;
 
-	new = malloc(n + 1);
-	if (new)
+	i = 0;
+	len = ft_strlen(s1);
+	final = malloc(len * sizeof(char) + 1);
+	if (!final)
+		return (NULL);
+	while (s1[i])
 	{
-		ft_strncpy(new, s, n);
-		new[n] = '\0';
+		final[i] = s1[i];
+		i++;
 	}
-	return (new);
+	final[i] = 0;
+	return (final);
 }

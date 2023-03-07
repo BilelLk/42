@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 20:03:11 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/07 14:40:41 by blakehal         ###   ########.fr       */
+/*   Created: 2022/11/08 13:16:47 by blakehal          #+#    #+#             */
+/*   Updated: 2022/11/11 18:22:13 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*ft_strndup(char *s, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char	*new;
+	char	*dest;
+	char	*source;
+	size_t	i;
 
-	new = malloc(n + 1);
-	if (new)
+	i = 0;
+	source = (char *)src;
+	dest = (char *)dst;
+	if (!dst && !src)
+		return (0);
+	if (dest > source)
+		while (len--)
+			dest[len] = source[len];
+	else if (dest < source)
 	{
-		ft_strncpy(new, s, n);
-		new[n] = '\0';
+		while (i < len)
+		{
+			dest[i] = source[i];
+			i++;
+		}
 	}
-	return (new);
+	return (dst);
 }

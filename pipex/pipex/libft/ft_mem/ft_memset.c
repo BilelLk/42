@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 20:03:11 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/07 14:40:41 by blakehal         ###   ########.fr       */
+/*   Created: 2022/11/07 17:12:55 by blakehal          #+#    #+#             */
+/*   Updated: 2022/11/12 14:28:26 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*ft_strndup(char *s, size_t n)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	char	*new;
+	unsigned char	*k;
 
-	new = malloc(n + 1);
-	if (new)
+	k = b;
+	while (len != 0)
 	{
-		ft_strncpy(new, s, n);
-		new[n] = '\0';
+		*k = (unsigned char)c;
+		k++;
+		len--;
 	}
-	return (new);
+	return (b);
 }

@@ -6,24 +6,24 @@
 #    By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/05 13:58:54 by blakehal          #+#    #+#              #
-#    Updated: 2023/03/07 14:53:59 by blakehal         ###   ########.fr        #
+#    Updated: 2023/03/07 17:52:24 by blakehal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	pipex_bonus
+NAME		=	pipex
 
-INC			=	pipex_bonus.h
+INC			=	pipex.h
 INC_DIR		=	./includes/
 
 HEADERS		= $(addprefix $(INC_DIR), $(INC))
 
 SRC_DIR		=	./sources/
-SRC			=	pipex_bonus.c			\
-				process_bonus.c			\
-				free_utils_bonus.c		\
-				files_utils_bonus.c		\
-				parsing_bonus.c			\
-				process_utils_bonus.c	\
+SRC			=	pipex.c			\
+				process.c			\
+				free_utils.c		\
+				files_utils.c		\
+				parsing.c			\
+				process_utils.c	\
 
 
 LIBFT_DIR	=	libft/

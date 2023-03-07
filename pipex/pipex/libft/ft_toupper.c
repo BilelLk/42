@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 20:03:11 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/07 14:40:41 by blakehal         ###   ########.fr       */
+/*   Created: 2022/11/08 16:12:42 by blakehal          #+#    #+#             */
+/*   Updated: 2022/11/12 14:31:07 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "libft.h"
 
-char	*ft_strndup(char *s, size_t n)
+int	ft_toupper(int c)
 {
-	char	*new;
-
-	new = malloc(n + 1);
-	if (new)
-	{
-		ft_strncpy(new, s, n);
-		new[n] = '\0';
-	}
-	return (new);
+	if (c >= 97 && c <= 122)
+		c = c - 32;
+	return (c);
 }

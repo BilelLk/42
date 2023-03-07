@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 20:03:11 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/07 14:40:41 by blakehal         ###   ########.fr       */
+/*   Created: 2022/11/13 16:42:18 by blakehal          #+#    #+#             */
+/*   Updated: 2022/11/14 10:58:11 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*ft_strndup(char *s, size_t n)
+int	ft_lstsize(t_list *lst)
 {
-	char	*new;
+	int	i;
 
-	new = malloc(n + 1);
-	if (new)
+	i = 0;
+	if (!lst)
+		return (0);
+	while (lst)
 	{
-		ft_strncpy(new, s, n);
-		new[n] = '\0';
+		lst = lst->next;
+		i++;
 	}
-	return (new);
+	return (i);
 }

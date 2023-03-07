@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 20:03:11 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/07 14:40:41 by blakehal         ###   ########.fr       */
+/*   Created: 2022/11/11 09:27:27 by blakehal          #+#    #+#             */
+/*   Updated: 2022/11/12 15:31:16 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*ft_strndup(char *s, size_t n)
+void	ft_putnbr_fd(int n, int fd)
 {
-	char	*new;
+	unsigned int	n_bis;
 
-	new = malloc(n + 1);
-	if (new)
+	n_bis = n;
+	if (n == -2147483648)
 	{
-		ft_strncpy(new, s, n);
-		new[n] = '\0';
+		write(fd, "-2147483648", 11);
+		return ;
 	}
-	return (new);
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n_bis = -n;
+	}
+	if (n_bis > 9)
+	{
+		ft_putnbr_fd((n_bis / 10), fd);
+		ft_putnbr_fd((n_bis % 10), fd);
+	}
+	if (n_bis <= 9)
+		ft_putchar_fd((n_bis + '0'), fd);
 }

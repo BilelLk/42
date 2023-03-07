@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   files_utils_bonus.c                                :+:      :+:    :+:   */
+/*   files_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:55:12 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/07 17:16:15 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/07 17:53:18 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "pipex.h"
 
 // Close both ends of the generated pipe
 void	close_pipes(t_pipe *pipex)

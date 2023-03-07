@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 20:03:11 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/07 14:40:41 by blakehal         ###   ########.fr       */
+/*   Created: 2022/11/09 14:19:42 by blakehal          #+#    #+#             */
+/*   Updated: 2022/11/15 19:22:03 by blakehal         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*ft_strndup(char *s, size_t n)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char	*new;
+	unsigned char	*str;
+	size_t			i;
 
-	new = malloc(n + 1);
-	if (new)
-	{
-		ft_strncpy(new, s, n);
-		new[n] = '\0';
-	}
-	return (new);
+	i = -1;
+	if (size != 0 && count > SIZE_MAX / size)
+		return (NULL);
+	str = malloc(count * size);
+	if (!str)
+		return (NULL);
+	while (++i < (count * size))
+		str[i] = 0;
+	return (str);
 }

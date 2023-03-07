@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 20:03:11 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/07 14:40:41 by blakehal         ###   ########.fr       */
+/*   Created: 2022/11/08 18:06:02 by blakehal          #+#    #+#             */
+/*   Updated: 2022/11/09 11:58:56 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*ft_strndup(char *s, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char	*new;
+	unsigned char	*source1;
+	unsigned char	*source2;
+	size_t			i;
 
-	new = malloc(n + 1);
-	if (new)
+	i = 0;
+	source1 = (unsigned char *)s1;
+	source2 = (unsigned char *)s2;
+	while (i != n && (source1[i] != '\0' || source2[i] != '\0'))
 	{
-		ft_strncpy(new, s, n);
-		new[n] = '\0';
+		if (source1[i] != source2[i])
+		{
+			return (source1[i] - source2[i]);
+		}
+		i++;
 	}
-	return (new);
+	return (0);
 }

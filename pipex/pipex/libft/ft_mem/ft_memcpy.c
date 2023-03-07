@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 20:03:11 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/07 14:40:41 by blakehal         ###   ########.fr       */
+/*   Created: 2022/11/07 18:36:16 by blakehal          #+#    #+#             */
+/*   Updated: 2022/11/11 17:54:20 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*ft_strndup(char *s, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	char	*new;
+	unsigned char	*source;
+	unsigned char	*dest;
 
-	new = malloc(n + 1);
-	if (new)
+	dest = (unsigned char *)dst;
+	source = (unsigned char *)src;
+	if (!dst && !src)
+		return (0);
+	while (n--)
 	{
-		ft_strncpy(new, s, n);
-		new[n] = '\0';
+		*dest = *source;
+		dest++;
+		source++;
 	}
-	return (new);
+	return (dst);
 }
