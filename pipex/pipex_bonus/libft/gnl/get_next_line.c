@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blakehal <blakehal@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:02:41 by blakehal          #+#    #+#             */
-/*   Updated: 2023/01/12 12:27:10 by blakehal         ###   ########lyon.fr   */
+/*   Updated: 2023/03/07 21:57:09 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = ft_implement(tmp);
 	tmp = ft_clean(tmp);
-	return (line);
+	return (free(tmp), tmp = NULL, line);
 }
 
 char	*ft_read(int fd, char *tmp)

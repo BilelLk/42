@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:52:14 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/07 17:53:18 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/08 13:02:58 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,7 @@ char	*get_cmd(char **path, char *cmd, t_pipe *pipex)
 
 static void	print_err_cmd(char *cmd, t_pipe *pipex)
 {
-	if (pipex->err_infile == -1 || pipex->err_outfile == -1)
-	{
-		if (pipex->index == 0 || pipex->index == pipex->nb_cmd)
-			return ;
-		else
-		{
-			write(2, cmd, ft_strlen(cmd));
-			ft_putendl_fd(": command not found", 2);
-		}
-	}
-	else
+	if (!check_right(pipex))
 	{
 		write(2, cmd, ft_strlen(cmd));
 		ft_putendl_fd(": command not found", 2);

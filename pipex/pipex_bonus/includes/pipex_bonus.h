@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:58:41 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/07 17:23:32 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/08 12:30:06 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ typedef struct s_pip
 	int		infile;
 	int		outfile;
 	int		index;
-	int		err_infile;
-	int		err_outfile;
+	int		here_doc;
 	int		nb_cmd;
 	int		argc;
 	char	**argv;
+	char	**split_parsing;
 }	t_pipe;
 
 // files_utils
@@ -65,5 +65,8 @@ void	ft_free_split(char **to_free);
 
 //process_utils
 char	*get_cmd(char **path, char *cmd, t_pipe *pipex);
+
+// here_doc
+void	pipex_here_doc(t_pipe *pipex, char *limiter);
 
 #endif 

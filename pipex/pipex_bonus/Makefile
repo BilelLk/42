@@ -6,7 +6,7 @@
 #    By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/05 13:58:54 by blakehal          #+#    #+#              #
-#    Updated: 2023/03/07 14:53:59 by blakehal         ###   ########.fr        #
+#    Updated: 2023/03/08 10:22:14 by blakehal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC			=	pipex_bonus.c			\
 				files_utils_bonus.c		\
 				parsing_bonus.c			\
 				process_utils_bonus.c	\
+				here_doc_bonus.c		\
 
 
 LIBFT_DIR	=	libft/
@@ -36,16 +37,17 @@ OBJ			=	$(SRC:%.c=$(OBJ_DIR)%.o)
 CC			=	gcc
 CC_FLAGS	=	-Wextra -Werror -Wall -g3
 
-all: build_libft $(NAME)
+all: $(NAME) #build_libft $(NAME)
 
-$(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS)
+$(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS) $(LIBFT_A)#$(LIBFT_DIR)libft.h
 		mkdir -p $(@D)
 		$(CC) $(CC_FLAGS) -I$(INC_DIR) -I$(LIBFT_INC) -c $< -o $@
 
-$(NAME): $(LIBFT_A) $(OBJ)
+$(NAME): $(OBJ)
 		$(CC) $(CC_FLAGS) $(OBJ) $(LIBFT_A) -o $@
 
-build_libft: $(LIBFT_DIR)
+#build_libft: $(LIBFT_DIR)
+$(LIBFT_A):
 		$(MAKE) -C $(LIBFT_DIR)
 
 clean:
@@ -57,4 +59,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re build_libft
+.PHONY: all clean fclean re #build_libft

@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:55:56 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/07 17:53:18 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/08 13:27:39 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,39 +22,36 @@ void	process(t_pipe *pipex, char **env)
 	pipex->index = 0;
 	while (pipex->index < pipex->nb_cmd)
 	{
-		if (parsing_error_cmd(pipex) == -1)
-			pipex->index++;
-		else
-		{
+		parsing_error_cmd(pipex);
+		if (pipex->argv[2 + pipex->index])
 			child(pipex, env);
-			pipex->index++;
-		}
+		pipex->index++;
 	}
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
+	close(STDERR_FILENO);
 }
 
 // Create a child process using fork to execute command
 static void	child(t_pipe *pipex, char **env)
 {
-	if (!pipex->index || (pipex->index > 0 && pipex->pid[pipex->index - 1]))
+	pipex->pid[pipex->index] = fork();
+	if (pipex->pid[pipex->index] == -1)
+		ft_exit(pipex, FORK_ERROR);
+	if (pipex->pid[pipex->index] == 0)
 	{
-		pipex->pid[pipex->index] = fork();
-		if (pipex->pid[pipex->index] == -1)
-			ft_exit(pipex, FORK_ERROR);
-		if (pipex->pid[pipex->index] == 0)
-		{
-			pipex->cmd_args = ft_split(pipex->argv[2 + pipex->index], ' ');
-			if (!pipex->cmd_args)
-				return ;
-			if (pipex_cmd(pipex) == -1)
-				return (ft_close_everything(pipex), \
-				parent_free(pipex), exit(1));
-			if (manage_dup(pipex) == -1)
-				return (ft_close_everything(pipex), \
-				parent_free(pipex), exit(1));
-			ft_close_everything(pipex);
-			execve(pipex->cmd, pipex->cmd_args, env);
+		pipex->cmd_args = ft_split(pipex->argv[2 + pipex->index], ' ');
+		if (!pipex->cmd_args)
+			return ;
+		if (pipex_cmd(pipex) == -1)
+			return (ft_close_everything(pipex), \
+			parent_free(pipex), exit(1));
+		if (manage_dup(pipex) == -1)
+			return (ft_close_everything(pipex), \
+			parent_free(pipex), exit(1));
+		ft_close_everything(pipex);
+		if (execve(pipex->cmd, pipex->cmd_args, env) == -1)
 			perror(pipex->cmd);
-		}
 	}
 }
 
@@ -77,21 +74,24 @@ static int	pipex_cmd(t_pipe *pipex)
 // Manage the dup2 based on the position of the command
 static int	manage_dup(t_pipe *pipex)
 {
-	if (pipex->index == 0)
+	if (!pipex->index)
 	{
-		if (pipex->err_infile == -1)
+		if (pipex->infile == -1)
 			return (-1);
 		if (dup2_double(pipex->infile, pipex->pipe[0][1]) == -1)
 			return (-1);
 	}
+	else if (!pipex->index && dup2(pipex->pipe[0][1], \
+		STDOUT_FILENO) == -1)
+		return (-1);
 	else if (pipex->index == pipex->nb_cmd - 1)
 	{
-		if (pipex->err_outfile == -1)
+		if (pipex->outfile == -1)
 			return (-1);
 		if (dup2_double(pipex->pipe[pipex->index - 1][0], pipex->outfile) == -1)
 			return (-1);
 	}
-	else
+	else if (pipex->index)
 		if (dup2_double(pipex->pipe[pipex->index - 1][0],
 			pipex->pipe[pipex->index][1]) == -1)
 			return (-1);

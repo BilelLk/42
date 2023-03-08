@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:55:12 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/07 17:16:15 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/08 12:33:34 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	create_pipes(t_pipe *pipex)
 	int	i;
 
 	i = 0;
-	while (i < pipex->nb_cmd -1)
+	while (i < pipex->nb_cmd - 1)
 	{
 		pipex->pipe[i] = ft_calloc(2, sizeof(int));
 		if (!pipex->pipe[i])
@@ -58,16 +58,10 @@ char	*find_path(char **env)
 
 int	check_right(t_pipe *pipex)
 {
-	if (pipex->err_infile == -1 && pipex->err_outfile == -1)
-		if ((2 + pipex->index) > 2 && (2 + pipex->index) < pipex->argc - 2)
-			return (1);
-	if (pipex->err_infile == -1 && pipex->err_outfile == 0)
-		if ((2 + pipex->index) > 2)
-			return (2);
-	if (pipex->err_infile == 0 && pipex->err_outfile == -1)
-		if ((2 + pipex->index) < pipex->argc - 2)
-			return (3);
-	if (pipex->err_infile == 0 && pipex->err_outfile == 0)
-		return (4);
-	return (5);
+	if (!pipex->index && pipex->infile == -1)
+		return (-1);
+	if (pipex->index == (pipex->argc - (4 + pipex->here_doc)) && \
+		pipex->outfile == -1)
+		return (-1);
+	return (0);
 }

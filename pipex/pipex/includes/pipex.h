@@ -6,12 +6,12 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:58:41 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/07 17:56:14 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/08 13:10:02 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_BONUS_H
-# define PIPEX_BONUS_H
+#ifndef PIPEX_H
+# define PIPEX_H
 
 # include <sys/wait.h>
 # include <stdio.h>
@@ -37,11 +37,10 @@ typedef struct s_pip
 	int		infile;
 	int		outfile;
 	int		index;
-	int		err_infile;
-	int		err_outfile;
 	int		nb_cmd;
 	int		argc;
 	char	**argv;
+	char	**split_parsing;
 }	t_pipe;
 
 // files_utils
