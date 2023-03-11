@@ -6,7 +6,7 @@
 #    By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/05 13:58:54 by blakehal          #+#    #+#              #
-#    Updated: 2023/03/11 15:36:43 by blakehal         ###   ########.fr        #
+#    Updated: 2023/03/11 17:10:06 by blakehal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ $(NAME): $(OBJ)
 		$(CC) $(CC_FLAGS) $(OBJ) $(LIBFT_A) -o $@
 
 ${LIBFT_A}: FORCE
-	make -C ${LIBFT_DIR}
+	$(MAKE) -C ${LIBFT_DIR}
 	
 FORCE:
 	

@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:56:36 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/11 16:47:34 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:20:23 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,21 @@ int	parsing_error_cmd(t_pipe *pipex)
 	int		i;
 
 	i = 0;
-	pipex->split_parsing = ft_split(pipex->argv[2 + pipex->index + \
-			pipex->here_doc], ' ');
-	if (!pipex->split_parsing)
-		ft_exit(pipex, "check_path split failed");
-	if (!pipex->split_parsing[i])
-		if (!check_right(pipex))
-			ft_putendl_fd(": command not found", 2);
+	pipex_split_parsing(pipex, i);
 	while (pipex->split_parsing[i])
 	{
 		if (check_cmd_is_not_found(pipex, pipex->split_parsing[i]) == -1)
 			return (ft_free_split(pipex->split_parsing), \
-			pipex->argv[2 + pipex->index + pipex->here_doc] = NULL, -1);
+			pipex->argv[2 + pipex->index] = NULL, -1);
 		if (check_dot_filename(pipex, pipex->split_parsing[i]) == -1)
 			return (ft_free_split(pipex->split_parsing), \
-			pipex->argv[2 + pipex->index + pipex->here_doc] = NULL, -1);
+			pipex->argv[2 + pipex->index] = NULL, -1);
 		if (check_dot_slash_none_filename(pipex, pipex->split_parsing[i]) == -1)
 			return (ft_free_split(pipex->split_parsing), \
-			pipex->argv[2 + pipex->index + pipex->here_doc] = NULL, -1);
+			pipex->argv[2 + pipex->index] = NULL, -1);
 		if (check_path(pipex, pipex->split_parsing[i]) == -1)
 			return (ft_free_split(pipex->split_parsing), \
-			pipex->argv[2 + pipex->index + pipex->here_doc] = NULL, -1);
+			pipex->argv[2 + pipex->index] = NULL, -1);
 		i++;
 	}
 	ft_free_split(pipex->split_parsing);
@@ -51,13 +45,7 @@ int	parsing_error_cmd(t_pipe *pipex)
 
 static int	check_cmd_is_not_found(t_pipe *pipex, char *cmd)
 {
-	if (cmd[0] == 0)
-	{
-		if (!check_right(pipex))
-			ft_putendl_fd(": command not found", 2);
-		return (-1);
-	}
-	else if (cmd[0] == '.' && ft_isalnum(cmd[1]))
+	if (cmd[0] == '.' && ft_isalnum(cmd[1]))
 	{
 		if (!check_right(pipex))
 		{
@@ -98,15 +86,6 @@ static int	check_dot_slash_none_filename(t_pipe *pipex, char *cmd)
 			ft_putendl_fd("/ : Is a directory", 2);
 		return (-1);
 	}
-	// else if (cmd[0] == '.' && cmd[1] == '/' && ft_isalnum(cmd[2]))
-	// {
-	// 	if (!check_right(pipex))
-	// 	{
-	// 		write(2, cmd, ft_strlen(cmd));
-	// 		ft_putendl_fd(": No such file or directory", 2);
-	// 	}
-	// 	return (-1);
-	// }
 	return (0);
 }
 

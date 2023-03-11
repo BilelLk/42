@@ -6,7 +6,7 @@
 #    By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 09:32:22 by blakehal          #+#    #+#              #
-#    Updated: 2023/03/11 14:23:04 by blakehal         ###   ########.fr        #
+#    Updated: 2023/03/11 17:10:25 by blakehal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ SRCS = 	ft_is/ft_isalpha.c			\
 
 CC				=	gcc
 RM				=	rm -rf
-CFLAGS			=	-Wall -Wextra -Werror -g3
+CFLAGS			=	-Wall -Wextra -Werror
 NAME			=	libft.a
 LIBC			=	ar rcs
 DIR_INCS		=	.

@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:58:41 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/08 13:10:02 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:20:36 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	parent_free(t_pipe *p);
 void	ft_close(int *fd);
 void	ft_exit(t_pipe *pipex, char *str);
 void	ft_close_everything(t_pipe *pipex);
+void	pipex_split_parsing(t_pipe *pipex, int i);
 
 // parsing
 int		parsing_error_cmd(t_pipe *pipex);
