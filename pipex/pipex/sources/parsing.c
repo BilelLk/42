@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:56:36 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/11 15:58:25 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/11 16:47:34 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,27 @@ int	parsing_error_cmd(t_pipe *pipex)
 	int		i;
 
 	i = 0;
-	pipex->split_parsing = ft_split(pipex->argv[2 + pipex->index], ' ');
+	pipex->split_parsing = ft_split(pipex->argv[2 + pipex->index + \
+			pipex->here_doc], ' ');
 	if (!pipex->split_parsing)
 		ft_exit(pipex, "check_path split failed");
+	if (!pipex->split_parsing[i])
+		if (!check_right(pipex))
+			ft_putendl_fd(": command not found", 2);
 	while (pipex->split_parsing[i])
 	{
 		if (check_cmd_is_not_found(pipex, pipex->split_parsing[i]) == -1)
 			return (ft_free_split(pipex->split_parsing), \
-			pipex->argv[2 + pipex->index] = NULL, -1);
+			pipex->argv[2 + pipex->index + pipex->here_doc] = NULL, -1);
 		if (check_dot_filename(pipex, pipex->split_parsing[i]) == -1)
 			return (ft_free_split(pipex->split_parsing), \
-			pipex->argv[2 + pipex->index] = NULL, -1);
+			pipex->argv[2 + pipex->index + pipex->here_doc] = NULL, -1);
 		if (check_dot_slash_none_filename(pipex, pipex->split_parsing[i]) == -1)
 			return (ft_free_split(pipex->split_parsing), \
-			pipex->argv[2 + pipex->index] = NULL, -1);
+			pipex->argv[2 + pipex->index + pipex->here_doc] = NULL, -1);
 		if (check_path(pipex, pipex->split_parsing[i]) == -1)
 			return (ft_free_split(pipex->split_parsing), \
-			pipex->argv[2 + pipex->index] = NULL, -1);
+			pipex->argv[2 + pipex->index + pipex->here_doc] = NULL, -1);
 		i++;
 	}
 	ft_free_split(pipex->split_parsing);
