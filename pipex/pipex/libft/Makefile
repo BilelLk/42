@@ -6,7 +6,7 @@
 #    By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 09:32:22 by blakehal          #+#    #+#              #
-#    Updated: 2023/03/06 20:04:38 by blakehal         ###   ########.fr        #
+#    Updated: 2023/03/11 13:59:15 by blakehal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,6 @@ DIR_INCS		=	.
 DIR_BUILD		=	.build/
 OBJS			=	$(patsubst %.c, $(DIR_BUILD)%.o, $(SRCS))
 DEPS			=	$(patsubst %.c, $(DIR_BUILD)%.d, $(SRCS))
-DEPS_FLAGS		=	-MMD -MP
 
 all:		$(NAME)
 
@@ -101,7 +100,7 @@ re:			fclean
 
 $(DIR_BUILD)%.o : %.c
 			mkdir -p $(shell dirname $@)
-			$(CC) $(CFLAGS) $(DEPS_FLAGS) $(DIR_INCS:%=-I %) -c $< -o $@
+			$(CC) $(CFLAGS) $(DIR_INCS:%=-I %) -c $< -o $@
 
 .PHONY: all clean fclean re
 

@@ -6,7 +6,7 @@
 #    By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/05 13:58:54 by blakehal          #+#    #+#              #
-#    Updated: 2023/03/08 12:58:24 by blakehal         ###   ########.fr        #
+#    Updated: 2023/03/11 14:00:07 by blakehal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,19 +34,18 @@ OBJ_DIR		=	build/
 OBJ			=	$(SRC:%.c=$(OBJ_DIR)%.o)
 
 CC			=	gcc
-CC_FLAGS	=	-Wextra -Werror -Wall -g3
+CC_FLAGS	=	-Wextra -Werror -Wall
 
-all: $(NAME) #build_libft $(NAME)
+all: build_libft $(NAME)
 
-$(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS) $(LIBFT_A)#$(LIBFT_DIR)libft.h
+$(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS) $(LIBFT_A) $(LIBFT_DIR)libft.h
 		mkdir -p $(@D)
 		$(CC) $(CC_FLAGS) -I$(INC_DIR) -I$(LIBFT_INC) -c $< -o $@
 
 $(NAME): $(OBJ)
 		$(CC) $(CC_FLAGS) $(OBJ) $(LIBFT_A) -o $@
 
-#build_libft: $(LIBFT_DIR)
-$(LIBFT_A):
+build_libft: $(LIBFT_DIR)
 		$(MAKE) -C $(LIBFT_DIR)
 
 clean:
@@ -58,4 +57,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re #build_libft
+.PHONY: all clean fclean re build_libft
