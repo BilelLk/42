@@ -6,11 +6,11 @@
 #    By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/05 13:58:54 by blakehal          #+#    #+#              #
-#    Updated: 2023/03/11 14:02:13 by blakehal         ###   ########.fr        #
+#    Updated: 2023/03/11 16:44:28 by blakehal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	pipex_bonus
+NAME		=	pipex
 
 INC			=	pipex_bonus.h
 INC_DIR		=	./includes/
@@ -35,7 +35,7 @@ OBJ_DIR		=	build/
 OBJ			=	$(SRC:%.c=$(OBJ_DIR)%.o)
 
 CC			=	gcc
-CC_FLAGS	=	-Wextra -Werror -Wall
+CC_FLAGS	=	-Wextra -Werror -Wall -g3
 
 all: build_libft $(NAME)
 

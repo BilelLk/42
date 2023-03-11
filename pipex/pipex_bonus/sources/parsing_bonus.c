@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:56:36 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/08 12:31:16 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/11 16:01:46 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ int	parsing_error_cmd(t_pipe *pipex)
 			pipex->here_doc], ' ');
 	if (!pipex->split_parsing)
 		ft_exit(pipex, "check_path split failed");
+	if (!pipex->split_parsing[i])
+		if (!check_right(pipex))
+			ft_putendl_fd(": command not found", 2);
 	while (pipex->split_parsing[i])
 	{
 		if (check_cmd_is_not_found(pipex, pipex->split_parsing[i]) == -1)
@@ -48,13 +51,7 @@ int	parsing_error_cmd(t_pipe *pipex)
 
 static int	check_cmd_is_not_found(t_pipe *pipex, char *cmd)
 {
-	if (cmd[0] == 0)
-	{
-		if (!check_right(pipex))
-			ft_putendl_fd(": command not found", 2);
-		return (-1);
-	}
-	else if (cmd[0] == '.' && ft_isalnum(cmd[1]))
+	if (cmd[0] == '.' && ft_isalnum(cmd[1]))
 	{
 		if (!check_right(pipex))
 		{

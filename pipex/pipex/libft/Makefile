@@ -6,7 +6,7 @@
 #    By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 09:32:22 by blakehal          #+#    #+#              #
-#    Updated: 2023/03/11 13:59:15 by blakehal         ###   ########.fr        #
+#    Updated: 2023/03/11 14:23:04 by blakehal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,7 +98,7 @@ re:			fclean
 
 -include $(DEPS)
 
-$(DIR_BUILD)%.o : %.c
+$(DIR_BUILD)%.o : %.c libft.h
 			mkdir -p $(shell dirname $@)
 			$(CC) $(CFLAGS) $(DIR_INCS:%=-I %) -c $< -o $@
 

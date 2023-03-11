@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:56:36 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/08 13:02:58 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/11 15:58:25 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,15 +94,15 @@ static int	check_dot_slash_none_filename(t_pipe *pipex, char *cmd)
 			ft_putendl_fd("/ : Is a directory", 2);
 		return (-1);
 	}
-	else if (cmd[0] == '.' && cmd[1] == '/' && ft_isalnum(cmd[2]))
-	{
-		if (!check_right(pipex))
-		{
-			write(2, cmd, ft_strlen(cmd));
-			ft_putendl_fd(": No such file or directory", 2);
-		}
-		return (-1);
-	}
+	// else if (cmd[0] == '.' && cmd[1] == '/' && ft_isalnum(cmd[2]))
+	// {
+	// 	if (!check_right(pipex))
+	// 	{
+	// 		write(2, cmd, ft_strlen(cmd));
+	// 		ft_putendl_fd(": No such file or directory", 2);
+	// 	}
+	// 	return (-1);
+	// }
 	return (0);
 }
 

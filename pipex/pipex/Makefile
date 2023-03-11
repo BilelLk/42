@@ -6,7 +6,7 @@
 #    By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/05 13:58:54 by blakehal          #+#    #+#              #
-#    Updated: 2023/03/11 14:00:07 by blakehal         ###   ########.fr        #
+#    Updated: 2023/03/11 15:36:43 by blakehal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ OBJ			=	$(SRC:%.c=$(OBJ_DIR)%.o)
 CC			=	gcc
 CC_FLAGS	=	-Wextra -Werror -Wall
 
-all: build_libft $(NAME)
+all: $(NAME)
 
 $(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS) $(LIBFT_A) $(LIBFT_DIR)libft.h
 		mkdir -p $(@D)
@@ -45,6 +45,11 @@ $(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS) $(LIBFT_A) $(LIBFT_DIR)libft.h
 $(NAME): $(OBJ)
 		$(CC) $(CC_FLAGS) $(OBJ) $(LIBFT_A) -o $@
 
+${LIBFT_A}: FORCE
+	make -C ${LIBFT_DIR}
+	
+FORCE:
+	
 build_libft: $(LIBFT_DIR)
 		$(MAKE) -C $(LIBFT_DIR)
 

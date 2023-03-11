@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:58:41 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/08 12:30:06 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/11 15:15:49 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define FORK_ERROR		"Fork error"
 # define EXEC_ERROR		"Execution Error"
 # define PATH_PREFIX	"PATH="
+# define HERE_DOC_MODEL	"./pipex here_doc LIMITER cmd cmd1 file"
 
 typedef struct s_pip
 {
@@ -58,6 +59,7 @@ void	ft_close_everything(t_pipe *pipex);
 
 // parsing
 int		parsing_error_cmd(t_pipe *pipex);
+void	ft_error_argc(t_pipe *pipex);
 
 // process
 void	process(t_pipe *pipex, char **env);

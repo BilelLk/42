@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:54:37 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/08 13:35:23 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/11 16:35:04 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,15 @@
 
 static void	init_pipex(t_pipe *pipex, int argc, char **argv, char **env);
 static void	get_file(t_pipe *p, char **argv, int argc);
-static void	ft_error_argc(void);
 static void	print_err_env_null(int argc, char **argv, t_pipe *pipex);
+static void	ft_check_arg(int argc, char **argv, t_pipe *pipex);
 
 int	main(int argc, char **argv, char **env)
 {
 	t_pipe	pipex;
 
 	ft_bzero(&pipex, sizeof(t_pipe));
-	if (!ft_strncmp(argv[1], "here_doc", ft_strlen(argv[1])))
-		pipex.here_doc = 1;
-	if (argc < 5 + pipex.here_doc)
-		ft_error_argc();
+	ft_check_arg(argc, argv, &pipex);
 	init_pipex(&pipex, argc, argv, env);
 	create_pipes(&pipex);
 	get_file(&pipex, argv, argc);
@@ -79,11 +76,18 @@ static void	init_pipex(t_pipe *pipex, int argc, char **argv, char **env)
 		print_err_env_null(argc, argv, pipex);
 }
 
-static void	ft_error_argc(void)
+static void	ft_check_arg(int argc, char **argv, t_pipe *pipex)
 {
-	ft_putendl_fd(ARG_ERROR, 2);
-	ft_putendl_fd(PIPE_MODEL, 2);
-	exit(1);
+	if (argc > 1)
+	{
+		if (argv[1][0] == 'h' && argv[1][1] == 'e' && \
+		argv[1][2] == 'r' && argv[1][3] == 'e' && \
+		argv[1][4] == '_' && argv[1][5] == 'd' && \
+		argv[1][6] == 'o' && argv[1][7] == 'c' && !argv[1][8])
+			pipex->here_doc = 1;
+	}
+	if (argc < 4 + pipex->here_doc)
+		ft_error_argc(pipex);
 }
 
 static void	print_err_env_null(int argc, char **argv, t_pipe *pipex)
