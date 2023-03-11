@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:56:36 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/11 16:01:46 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:21:05 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,7 @@ int	parsing_error_cmd(t_pipe *pipex)
 	int		i;
 
 	i = 0;
-	pipex->split_parsing = ft_split(pipex->argv[2 + pipex->index + \
-			pipex->here_doc], ' ');
-	if (!pipex->split_parsing)
-		ft_exit(pipex, "check_path split failed");
-	if (!pipex->split_parsing[i])
-		if (!check_right(pipex))
-			ft_putendl_fd(": command not found", 2);
+	pipex_split_parsing(pipex, i);
 	while (pipex->split_parsing[i])
 	{
 		if (check_cmd_is_not_found(pipex, pipex->split_parsing[i]) == -1)
@@ -90,15 +84,6 @@ static int	check_dot_slash_none_filename(t_pipe *pipex, char *cmd)
 	{
 		if (!check_right(pipex))
 			ft_putendl_fd("/ : Is a directory", 2);
-		return (-1);
-	}
-	else if (cmd[0] == '.' && cmd[1] == '/' && ft_isalnum(cmd[2]))
-	{
-		if (!check_right(pipex))
-		{
-			write(2, cmd, ft_strlen(cmd));
-			ft_putendl_fd(": No such file or directory", 2);
-		}
 		return (-1);
 	}
 	return (0);
