@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:55:56 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/08 13:27:39 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/12 15:32:12 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static void	child(t_pipe *pipex, char **env)
 	{
 		pipex->cmd_args = ft_split(pipex->argv[2 + pipex->index], ' ');
 		if (!pipex->cmd_args)
-			return ;
+			return (ft_close_everything(pipex), \
+			parent_free(pipex), exit(1));
 		if (pipex_cmd(pipex) == -1)
 			return (ft_close_everything(pipex), \
 			parent_free(pipex), exit(1));
