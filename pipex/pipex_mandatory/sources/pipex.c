@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:54:37 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/11 17:08:14 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/12 13:50:50 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static void	init_pipex(t_pipe *pipex, int argc, char **argv, char **env);
 static void	get_file(t_pipe *p, char **argv, int argc);
 static void	ft_error_argc(void);
-static void	print_err_env_null(int argc, char **argv, t_pipe *pipex);
 
 int	main(int argc, char **argv, char **env)
 {
@@ -64,7 +63,7 @@ static void	init_pipex(t_pipe *pipex, int argc, char **argv, char **env)
 			ft_exit(pipex, NULL);
 	}
 	else
-		print_err_env_null(argc, argv, pipex);
+		pipex->cmd_paths = NULL;
 }
 
 static void	ft_error_argc(void)
@@ -72,18 +71,4 @@ static void	ft_error_argc(void)
 	ft_putendl_fd(ARG_ERROR, 2);
 	ft_putendl_fd(PIPE_MODEL, 2);
 	exit(1);
-}
-
-static void	print_err_env_null(int argc, char **argv, t_pipe *pipex)
-{
-	int	i;
-
-	i = 0;
-	while (i != argc - 3)
-	{
-		write(2, argv[i + 2], ft_strlen(argv[i + 2]));
-		ft_putendl_fd(": command not found", 2);
-		i++;
-	}
-	pipex->cmd_paths = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:56:36 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/11 18:55:10 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/12 13:50:20 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,12 @@ static int	check_cmd_is_not_found(t_pipe *pipex, char *cmd)
 	{
 		if (!check_right(pipex))
 		{
-			write(2, cmd, \
-			ft_strlen(cmd));
-			ft_putendl_fd(": command not found", 2);
+				write(2, cmd, ft_strlen(cmd));
+			if (pipex->env_path)
+				ft_putendl_fd(": command not found", 2);
+			else
+				ft_putendl_fd(": No such file or directory", 2);
+			
 		}
 		return (-1);
 	}

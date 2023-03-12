@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:55:12 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/11 15:15:21 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/12 13:46:35 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,4 @@ int	check_right(t_pipe *pipex)
 		pipex->outfile == -1)
 		return (-1);
 	return (0);
-}
-
-void	ft_error_argc(t_pipe *pipex)
-{
-	ft_putendl_fd(ARG_ERROR, 2);
-	if (pipex->here_doc)
-		ft_putendl_fd(HERE_DOC_MODEL, 2);
-	else
-		ft_putendl_fd(PIPE_MODEL, 2);
-	exit(1);
 }

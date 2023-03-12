@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:58:41 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/11 19:03:03 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/12 13:47:06 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int		pipex_split_parsing(t_pipe *pipex, int i);
 
 // parsing
 int		parsing_error_cmd(t_pipe *pipex);
-void	ft_error_argc(t_pipe *pipex);
 
 // process
 void	process(t_pipe *pipex, char **env);

@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:54:37 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/11 18:47:52 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/12 13:57:30 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	init_pipex(t_pipe *pipex, int argc, char **argv, char **env);
 static void	get_file(t_pipe *p, char **argv, int argc);
-static void	print_err_env_null(int argc, char **argv, t_pipe *pipex);
 static void	ft_check_arg(int argc, char **argv, t_pipe *pipex);
+static void	ft_error_argc(t_pipe *pipex);
 
 int	main(int argc, char **argv, char **env)
 {
@@ -66,7 +66,7 @@ static void	init_pipex(t_pipe *pipex, int argc, char **argv, char **env)
 			ft_exit(pipex, NULL);
 	}
 	else
-		print_err_env_null(argc, argv, pipex);
+		pipex->cmd_paths = NULL;
 }
 
 // Open the files
@@ -90,16 +90,12 @@ static void	get_file(t_pipe *pipex, char **argv, int argc)
 		perror(argv[argc - 1]);
 }
 
-static void	print_err_env_null(int argc, char **argv, t_pipe *pipex)
+static void	ft_error_argc(t_pipe *pipex)
 {
-	int	i;
-
-	i = 0;
-	while (i != argc - 3)
-	{
-		write(2, argv[i + 2], ft_strlen(argv[i + 2]));
-		ft_putendl_fd(": command not found", 2);
-		i++;
-	}
-	pipex->cmd_paths = NULL;
+	ft_putendl_fd(ARG_ERROR, 2);
+	if (pipex->here_doc)
+		ft_putendl_fd(HERE_DOC_MODEL, 2);
+	else
+		ft_putendl_fd(PIPE_MODEL, 2);
+	exit(1);
 }
