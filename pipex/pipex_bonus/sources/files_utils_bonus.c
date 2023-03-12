@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:55:12 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/12 13:46:35 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/12 14:51:23 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,25 @@ int	check_right(t_pipe *pipex)
 	if (pipex->index == (pipex->argc - (4 + pipex->here_doc)) && \
 		pipex->outfile == -1)
 		return (-1);
+	return (0);
+}
+
+int	check_cmd_without_env_path(t_pipe *pipex, char *cmd)
+{
+	size_t	i;
+
+	i = 0;
+	while (ft_isalnum(cmd[i]))
+		i++;
+	if (i == ft_strlen(cmd))
+	{
+		if (!pipex->env_path)
+		{
+			write(2, cmd, ft_strlen(cmd));
+			ft_putendl_fd(": No such file or directory", 2);
+		}
+		i = 0;
+		return (-1);
+	}
 	return (0);
 }

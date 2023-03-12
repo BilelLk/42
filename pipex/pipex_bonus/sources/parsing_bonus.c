@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:56:36 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/12 14:39:49 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/12 14:49:25 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	parsing_error_cmd(t_pipe *pipex)
 			pipex->argv[2 + pipex->index + pipex->here_doc] = NULL, -1);
 	while (pipex->split_parsing[i])
 	{
-		if (check_cmd_is_not_found(pipex, pipex->split_parsing[i]) == -1 || \
+		if (check_cmd_without_env_path(pipex, pipex->split_parsing[i]) == -1 || \
+		check_cmd_is_not_found(pipex, pipex->split_parsing[i]) == -1 || \
 		check_dot_filename(pipex, pipex->split_parsing[i]) == -1 || \
 		check_dot_slash_none_filename(pipex, pipex->split_parsing[i]) == -1 || \
 		check_path(pipex, pipex->split_parsing[i]) == -1)
@@ -41,21 +42,6 @@ int	parsing_error_cmd(t_pipe *pipex)
 
 static int	check_cmd_is_not_found(t_pipe *pipex, char *cmd)
 {
-	size_t	i;
-	
-	i = 0;
-	while (ft_isalnum(cmd[i]))
-		i++;
-	if (i == ft_strlen(cmd))
-	{
-		if (!pipex->env_path)
-		{
-			write(2, cmd, ft_strlen(cmd));
-			ft_putendl_fd(": No such file or directory", 2);
-		}
-		i = 0;
-		return (-1);
-	}
 	if ((cmd[0] == '.' && ft_isalnum(cmd[1])))
 	{
 		if (!check_right(pipex))

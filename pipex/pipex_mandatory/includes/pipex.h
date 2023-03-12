@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:58:41 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/11 19:01:09 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/12 14:50:33 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	create_pipes(t_pipe *p);
 void	close_pipes(t_pipe *p);
 char	*find_path(char **env);
 int		check_right(t_pipe *pipex);
+int		check_cmd_without_env_path(t_pipe *pipex, char *cmd);
 
 // free_utils
 void	parent_free(t_pipe *p);

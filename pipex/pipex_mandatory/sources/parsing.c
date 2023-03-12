@@ -6,7 +6,7 @@
 /*   By: blakehal <blakehal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:56:36 by blakehal          #+#    #+#             */
-/*   Updated: 2023/03/12 13:50:20 by blakehal         ###   ########.fr       */
+/*   Updated: 2023/03/12 14:53:03 by blakehal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,11 @@ int	parsing_error_cmd(t_pipe *pipex)
 			pipex->argv[2 + pipex->index] = NULL, -1);
 	while (pipex->split_parsing[i])
 	{
-		if (check_cmd_is_not_found(pipex, pipex->split_parsing[i]) == -1)
-			return (ft_free_split(pipex->split_parsing), \
-			pipex->argv[2 + pipex->index] = NULL, -1);
-		if (check_dot_filename(pipex, pipex->split_parsing[i]) == -1)
-			return (ft_free_split(pipex->split_parsing), \
-			pipex->argv[2 + pipex->index] = NULL, -1);
-		if (check_dot_slash_none_filename(pipex, pipex->split_parsing[i]) == -1)
-			return (ft_free_split(pipex->split_parsing), \
-			pipex->argv[2 + pipex->index] = NULL, -1);
-		if (check_path(pipex, pipex->split_parsing[i]) == -1)
+		if (check_cmd_without_env_path(pipex, pipex->split_parsing[i]) == -1 || \
+		check_cmd_is_not_found(pipex, pipex->split_parsing[i]) == -1 || \
+		check_dot_filename(pipex, pipex->split_parsing[i]) == -1 || \
+		check_dot_slash_none_filename(pipex, pipex->split_parsing[i]) == -1 || \
+		check_path(pipex, pipex->split_parsing[i]) == -1)
 			return (ft_free_split(pipex->split_parsing), \
 			pipex->argv[2 + pipex->index] = NULL, -1);
 		i++;
@@ -47,16 +42,15 @@ int	parsing_error_cmd(t_pipe *pipex)
 
 static int	check_cmd_is_not_found(t_pipe *pipex, char *cmd)
 {
-	if (cmd[0] == '.' && ft_isalnum(cmd[1]))
+	if ((cmd[0] == '.' && ft_isalnum(cmd[1])))
 	{
 		if (!check_right(pipex))
 		{
-				write(2, cmd, ft_strlen(cmd));
+			write(2, cmd, ft_strlen(cmd));
 			if (pipex->env_path)
 				ft_putendl_fd(": command not found", 2);
 			else
 				ft_putendl_fd(": No such file or directory", 2);
-			
 		}
 		return (-1);
 	}
